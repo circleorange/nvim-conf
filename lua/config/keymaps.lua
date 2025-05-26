@@ -34,3 +34,9 @@ nmap("<S-h>", CMD.."bprevious"..CR, { desc = "Previous Buffer" })
 nmap("<S-l>", CMD.."bnext"..CR, { desc = "Next Buffer" })
 nmap(LEADER.."bb", CMD.."e #"..CR, { desc = "Switch to Other Buffer" })
 
+-- Oil
+nmap(LEADER.."o", ":Oil ."..CR, { desc = "Open Oil at $CWD" })
+nmap(LEADER.."O", function() 
+	require("oil").open_float(vim.fn.expand("%:p:h"))
+end, { desc = "Open Oil floating at current file dir" })
+nmap("-", ":Oil .."..CR, { desc = "Oil quickly jump up" })
