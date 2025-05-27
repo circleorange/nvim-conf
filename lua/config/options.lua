@@ -1,27 +1,57 @@
--- Editor
-vim.opt.number 			= true
-vim.opt.relativenumber 	= true
-vim.g.have_nerd_font	= true
-vim.opt.guifont			= "Agave Nerd Font"
+local opt = vim.opt -- For conciseness
 
--- Text, Code
-vim.g.autoformat	= false
-vim.opt.scrolloff 	= 10 	-- minimum number of lines buffer
-vim.opt.cursorline	= false
-vim.opt.list		= false	-- show whitespace characters
-vim.opt.inccommand	= "split" -- live preview substitutions
+-- General
+opt.guifont = "Agave Nerd Font"
+opt.mouse = "a"               -- Enable mouse support in all modes
+opt.clipboard = "unnamedplus" -- Use system clipboard
+opt.swapfile = false          -- Disable swap files
+opt.backup = false            -- Disable backup files
+opt.undofile = true           -- Enable persistent undo
+opt.undodir = vim.fn.stdpath("data") .. "/undodir"
+if not vim.loop.fs_stat(opt.undodir:get()) then
+    vim.fn.mkdir(opt.undodir:get(), "p")
+end
 
--- Indentation
-vim.opt.tabstop 	= 4
-vim.opt.shiftwidth	= 4
-vim.opt.expandtab	= false	-- expand tab to space
-vim.opt.smartindent	= true
+-- Appearance
+opt.number = true         -- Show line numbers
+opt.relativenumber = true -- Show relative line numbers
+opt.cursorline = true     -- Highlight the current line
+opt.termguicolors = true  -- Enable true color support
+opt.signcolumn = "yes"    -- Always show the sign column, otherwise it would shift the text
+opt.scrolloff = 8         -- Minimal number of screen lines to keep above and below the cursor
+opt.sidescrolloff = 8     -- Minimal number of screen columns to keep to the left and right of the cursor
+opt.showmode = false      -- Don't show mode since it's in the status line
 
--- UI
-vim.opt.showmode 	= true	-- can disable if already shown on status line
-vim.opt.termguicolors	= true
-vim.opt.undofile	= true
-vim.opt.ignorecase	= true
-vim.opt.smartcase	= true
-vim.opt.signcolumn	= "yes"
+-- Tabs and Indentation
+opt.tabstop = 2        -- Number of spaces that a <Tab> in the file counts for
+opt.softtabstop = 2    -- Number of spaces that a <Tab> counts for when inserting a <Tab>
+opt.shiftwidth = 2     -- Number of spaces to use for each step of (auto)indent
+opt.expandtab = true   -- Use spaces instead of tabs
+opt.autoindent = true  -- Copy indent from current line when starting a new line
+opt.smartindent = true -- Make indenting smart
 
+-- Search
+opt.hlsearch = true   -- Highlight all matches on search
+opt.incsearch = true  -- Show search results incrementally
+opt.ignorecase = true -- Ignore case in search patterns
+opt.smartcase = true  -- Override 'ignorecase' if the search pattern contains uppercase letters
+
+-- Behavior
+opt.wrap = false      -- Do not wrap lines
+opt.splitright = true -- When splitting vertically, new window goes to the right
+opt.splitbelow = true -- When splitting horizontally, new window goes to the bottom
+opt.autoread = true   -- Automatically re-read files if modified outside of Neovim
+
+-- Performance
+opt.updatetime = 250 -- Faster completion (default is 4000ms)
+opt.timeoutlen = 500 -- Time in milliseconds to wait for a mapped sequence to complete
+opt.ttimeoutlen = 10 -- Time in milliseconds to wait for a key code sequence
+
+-- Diagnostics display (pop-up on cursor hover)
+vim.o.updatetime = 250 -- Send CursorHold event faster
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    pattern = "*",
+    callback = function()
+        vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+    end
+})
