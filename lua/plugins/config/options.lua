@@ -7,10 +7,6 @@ opt.clipboard = "unnamedplus" -- Use system clipboard
 opt.swapfile = false          -- Disable swap files
 opt.backup = false            -- Disable backup files
 opt.undofile = true           -- Enable persistent undo
-opt.undodir = vim.fn.stdpath("data") .. "/undodir"
-if not vim.loop.fs_stat(opt.undodir:get()) then
-    vim.fn.mkdir(opt.undodir:get(), "p")
-end
 
 -- Appearance
 opt.number = true         -- Show line numbers
