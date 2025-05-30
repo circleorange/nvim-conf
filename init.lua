@@ -29,10 +29,11 @@ require("lazy").setup({
     require("plugins.git"),
     require("plugins.motions"),
 
-    -- load LSP for language support
-    require("plugins.lsp"),
-    require("plugins.completions"),
-
     -- load Language-specific plugins (needs to load before LSP)
     require("plugins.java"),
+
+    -- load LSP for language support
+    require("plugins.completions"),
+    require("plugins.lsp"),
+
 })

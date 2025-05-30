@@ -12,7 +12,10 @@ map("n", "<Leader>w", ":w<Cr>", { desc = "Save File" })
 map("n", "<Leader>q", ":q!<Cr>", { desc = "Quit Editor" })
 map("n", "<Leader>x", ":x!<Cr>", { desc = "Save and Quit Editor" })
 map("n", "<Leader>e", ":e<Cr>", { desc = "File Explorer" })
-map("n", "<Leader>T", ":ToggleTerm<Cr>", { desc = "Toggle Floating Terminal" })
+
+-- Terminal
+map("n", "<Leader>tt", "<Cmd>ToggleTerm direction=float<Cr>", { desc = "Toggle Floating Terminal" })
+map("n", "<Leader>th", "<Cmd>ToggleTerm<Cr>", { desc = "Toggle Terminal" })
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit Terminal Mode" })
 
 

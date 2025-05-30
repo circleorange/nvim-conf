@@ -1,22 +1,48 @@
-return {
-  "neovim/nvim-lspconfig",
-  dependencies = {
-    "hrsh7th/cmp-nvim-lsp",
-    { "williamboman/mason.nvim", build = ":MasonUpdate", config = function()
-        require("mason").setup()
-      end,
+return { 
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+            "WhoIsSethDaniel/mason-tool-installer.nvim",
+        },
+        config = function()
+            require("config.lsp")
+            require("lspconfig").jdtls.setup({})
+        end,
     },
-    { "williamboman/mason-lspconfig.nvim", dependencies = { "mason.nvim" }, config = function()
-        local lsp = require("config.lsp")
-        require("mason-lspconfig").setup({
-          ensure_installed   = lsp.ensure_installed,
-          automatic_installation = true,
-        })
-      end,
+    {
+        "williamboman/mason.nvim",
+        build = ":MasonUpdate",
+        config = function()
+            require("mason").setup()
+        end,
     },
-  },
-  config = function()
-    -- load shared capabilities & on_attach; actual servers live in lua/plugins/lang/
-    require("config.lsp")
-  end,
+    {
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = { "mason.nvim" },
+        config = function()
+            require("mason-lspconfig").setup({
+                ensure_installed = { "jdtls", "lua_ls", "pyright" },
+                automatic_installation = true,
+            })
+        end,
+    },
+    {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        dependencies = { "mason.nvim" },
+        config = function()
+            require("mason-tool-installer").setup({
+                -- list ALL the external tools you want Mason to auto-install:
+                ensure_installed = {
+                    "java-debug-adapter",   -- <─ DAP adapter for Java
+                    "stylua",               -- Lua formatter
+                    "black",                -- Python formatter
+                    "prettier",             -- markdown/js/html formatter
+                },
+                auto_update = true,
+            })
+        end,
+    },
 }
