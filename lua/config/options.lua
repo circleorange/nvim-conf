@@ -22,7 +22,7 @@ opt.showmode = false      -- Don't show mode since it's in the status line
 opt.tabstop = 4        -- Number of spaces that a <Tab> in the file counts for
 opt.softtabstop = 4    -- Number of spaces that a <Tab> counts for when inserting a <Tab>
 opt.shiftwidth = 4     -- Number of spaces to use for each step of (auto)indent
-opt.expandtab = true   -- Use spaces instead of tabs
+opt.expandtab = false   -- Use spaces instead of tabs
 opt.autoindent = true  -- Copy indent from current line when starting a new line
 opt.smartindent = true -- Make indenting smart
 
