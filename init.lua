@@ -10,31 +10,29 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- load utils, basic settings, and keymaps
-require("utils") -- helper functions
+require("config.mapper") -- helper functions
+require("config.options")
+require("config.keymaps")
 
 -- load plugins using Lazy for management
 require("lazy").setup({
 
-    require("config.options"),
-    require("config.keymaps"),
+    -- load general Editor plugins
+    require("plugins.file_explorer"),
+    require("plugins.file_search"),
+    require("plugins.terminal"),
+    require("plugins.oil"),
+    require("plugins.treesitter"),
+    require("plugins.project"),
+    require("plugins.cursor"),
+    require("plugins.misc"),
+    require("plugins.git"),
+    require("plugins.motions"),
 
     -- load LSP for language support
-    require("plugins.code.lsp"),
-    require("plugins.code.completions"),
-    require("plugins.code.snippets"),
-    require("plugins.code.flash"),
+    require("plugins.lsp"),
+    require("plugins.completions"),
 
-    -- load Language configurations (needs to load before LSP)
-    require("plugins.lang.java"),
-    require("plugins.lang.markdown"),
-
-    -- load Editor configurations
-    require("plugins.editor.fileexplorer"),
-    require("plugins.editor.filesearch"),
-    require("plugins.editor.floatingterm"),
-    require("plugins.editor.oil"),
-    require("plugins.editor.treesitter"),
-    require("plugins.editor.project"),
-    require("plugins.editor.whichkey"),
-    require("plugins.editor.smear-cursor"),
+    -- load Language-specific plugins (needs to load before LSP)
+    require("plugins.java"),
 })
