@@ -1,80 +1,60 @@
+local deps
+local servers = { "lua_ls", "pyright", "jdtls" }
+
 return {
 	{
+		-- Provides basic, default Neovim LSP client configurations.
+		-- Primary interface through which neovim communicates with language serveers.
+		-- Core aspect is handling servers not readily available in systems PATH.
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
-			"folke/neodev.nvim",
-
 		},
 		config = function()
-			require("config.lsp")
-			require("neodev").setup()
-			require("lspconfig").jdtls.setup({})
-		end,
+			-- apply default capabilities to all installed language servers
+			vim.lsp.config("*", {
+				capabilities	= deps.cmp_nvim_lsp.capabilities,
+				on_attach		= deps.cmp_nvim_lsp.on_attach,
+			})
+		end
 	},
-	-- LSP Registry and UI (management and installation of LSPs)
+	-- LSP Installer and Management (LSP, DAP, linters, formatters)
 	{
 		"williamboman/mason.nvim",
 		build = ":MasonUpdate",
-		config = function()
-			require("mason").setup()
-		end,
+		opts = {} -- trigger for lazy.nvim to automatically call setup()
 	},
 	-- Configurations for LSPs installed by Mason by calling lspconfig.
+	-- Automation bridge between mason.nvim and nvim-lspconfig.
+	-- Requires mason.nvim and nvim-lspconfig to be fully setup.
 	{
 		"williamboman/mason-lspconfig.nvim",
 		dependencies = {
 			"mason.nvim",
 			"neovim/nvim-lspconfig",
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
 		},
 		config = function()
-			local lsp_options   = require("config.lsp")
-			local servers       = lsp_options.ensure_installed
-
-			require("mason").setup()
-			require("mason-lspconfig").setup({
+			deps.mason_lspconfig.setup({
 				ensure_installed        = servers,
 				automatic_installation  = true,		-- install missing LSPs
 				automatic_enable        = true,		-- disable enabling servers by default
 			})
-
-			vim.lsp.config["lua_ls"] = {
-				cmd = { "lua-language-server" },    -- start LSP
-				filetypes = { "lua" },
-				root_markers = { ".luarc.json", ".luarc.jsonc" },
-				settings = {
-					Lua = {
-						runtime = { version = { "LuaJIT" } }
-					}
-				},
-			}
-			vim.lsp.enable("lua_ls")
-
-			local function enable_server(server_name)
-				local server = servers[server_name] or {}
-
-				server.capabilities = vim.tbl_deep_extend("force", {}, lsp_options.capabilities or {})
-
-				vim.lsp.config[server_name].setup({
-					capabilities    = lsp_options.capabilities,
-					on_attach       = lsp_options.on_attach,
-				})
-
-				vim.lsp.enable(name)
-			end
 		end,
 	},
+	-- Mason Installer for third-party external tools
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		dependencies = { "mason.nvim" },
 		config = function()
-			require("mason-tool-installer").setup({
-				-- list ALL the external tools you want Mason to auto-install:
+			deps = require("utils.deps")
+			deps.mason_tools.setup({
+				-- external tools for mason to install
 				ensure_installed = {
-					"java-debug-adapter",   -- <─ DAP adapter for Java
+					"java-debug-adapter",   -- DAP adapter for Java
 					"stylua",               -- Lua formatter
 					"black",                -- Python formatter
 					"prettier",             -- markdown/js/html formatter

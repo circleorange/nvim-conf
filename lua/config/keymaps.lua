@@ -1,9 +1,9 @@
-local n_map = require("config.mapper").nmap
-local i_map = require("config.mapper").imap
-local v_map = require("config.mapper").vmap
-local x_map = require("config.mapper").xmap
-local t_map = require("config.mapper").tmap
-local c_map = require("config.mapper").cmap
+local n_map = require("utils.mapper").nmap
+local i_map = require("utils.mapper").imap
+local v_map = require("utils.mapper").vmap
+local x_map = require("utils.mapper").xmap
+local t_map = require("utils.mapper").tmap
+local c_map = require("utils.mapper").cmap
 
 vim.g.mapleader = " "
 local map = vim.keymap.set
