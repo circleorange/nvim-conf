@@ -20,18 +20,20 @@ require("lazy").setup({
     require("plugins.file_explorer"),
     require("plugins.file_search"),
     require("plugins.terminal"),
+    require("plugins.cmdline"),
     require("plugins.project"),
     require("plugins.cursor"),
     require("plugins.misc"),
     require("plugins.git"),
 
     -- Language-specific
-    require("lsp.java"),
     require("lsp.lua_ls"),
+    require("lsp.java"),
+	require("lsp.bash"),
 
     -- Code
+    require("plugins.completions"),
     require("plugins.treesitter"),
     require("plugins.motions"),
-    require("plugins.completions"),
     require("plugins.lsp"),
 })

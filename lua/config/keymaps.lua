@@ -8,72 +8,84 @@ local c_map = require("utils.mapper").cmap
 vim.g.mapleader = " "
 local map = vim.keymap.set
 
-map("n", "<Leader>w", ":w<Cr>", { desc = "Save File" })
-map("n", "<Leader>q", ":q!<Cr>", { desc = "Quit Editor" })
-map("n", "<Leader>x", ":x!<Cr>", { desc = "Save and Quit Editor" })
-map("n", "<Leader>e", ":e<Cr>", { desc = "File Explorer" })
+-- Code Motions 
+local lsp_opts = { noremap = true, silent = true }
+map("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("keep", lsp_opts, { desc = "Go to [d]efinition" } ))
+map("n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("keep", lsp_opts, { desc = "Go to [D]eclaration" } ))
+map("n", "gi", vim.lsp.buf.implementation, vim.tbl_extend("keep", lsp_opts, { desc = "Go to [I]mplementation" }))
+map("n", "gr", vim.lsp.buf.references, vim.tbl_extend("keep", lsp_opts, { desc = "Go to [R]eferences" }))
 
--- Terminal
-map("n", "<Leader>tt", "<Cmd>ToggleTerm direction=float<Cr>", { desc = "Toggle Floating Terminal" })
-map("n", "<Leader>th", "<Cmd>ToggleTerm<Cr>", { desc = "Toggle Terminal" })
-map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit Terminal Mode" })
-
-
--- file search (Telescope)
-map("n", "<Leader>ff", ":Telescope find_files<CR>", { desc = "Find File" })
-map("n", "<Leader>fg", ":Telescope live_grep<CR>", { desc = "Search in Files" })
-map("n", "<Leader>fb", ":Telescope buffers<CR>", { desc = "Find Buffer" })
-map("n", "<Leader>fh", ":Telescope help_tags<CR>")
--- can add: find open buffers, find in recent files
-
--- Code Motions
+-- Window Navigation (<C-w>hjkl)
+-- Treewalker
 map({"n", "v"}, "<C-k>", "<Cmd>Treewalker Up<Cr>", { silent = true })
 map({"n", "v"}, "<C-j>", "<Cmd>Treewalker Down<Cr>", { silent = true })
 map({"n", "v"}, "<C-h>", "<Cmd>Treewalker Left<Cr>", { silent = true })
 map({"n", "v"}, "<C-l>", "<Cmd>Treewalker Right<Cr>", { silent = true })
-
 map("n", "<C-S-k>", "<Cmd>Treewalker SwapUp<Cr>", { silent = true })
 map("n", "<C-S-j>", "<Cmd>Treewalker SwapDown<Cr>", { silent = true })
 map("n", "<C-S-h>", "<Cmd>Treewalker SwapLeft<Cr>", { silent = true })
 map("n", "<C-S-l>", "<Cmd>Treewalker SwapRight<Cr>", { silent = true })
 
--- window navigation (<C-w>hjkl)
-
--- buffer nav & management
+-- Buffer nav & management
 map("n", "<S-h>", "<Cmd>bprevious<Cr>", { desc = "Previous Buffer" })
 map("n", "<S-l>", "<Cmd>bnext<Cr>", { desc = "Next Buffer" })
 map("n", "<Leader>bb", "<Cmd>e #<Cr>", { desc = "Switch to Other Buffer" })
 map("n", "<Leader>bd", ":bd<CR>", { desc = "Close buffer" })
 
--- tabs
+-- Code, Formatting
+v_map("<", "<gv", { desc = "Increase Indentation" })
+v_map(">", ">gv", { desc = "Decrease Indentation" })
+map("n", "<A-j>", "<Cmd>m .+1<Cr>==", { desc = "Shift line up" })
+map("n", "<A-k>", "<Cmd>m .-2<Cr>==", { desc = "Shift line down" })
+map("v", "<A-j>", "<Cmd>m '>+1<Cr>gv=gv", { desc = "Shift line up" })
+map("v", "<A-k>", "<Cmd>m '>-2<Cr>gv=gv", { desc = "Shift line down" })
+
+-- [F]iles
+map("n", "<Leader>fw", "<Cmd>wa!<Cr>", { desc = "Save" })
+map("n", "<Leader>fq", "<Cmd>qa!<Cr>", { desc = "Quit" })
+map("n", "<Leader>fx", "<Cmd>xa!<Cr>", { desc = "Save and Quit" })
+map("n", "<Leader>fe", "<Cmd>e<Cr>", { desc = "File Explorer" })
+map("n", "<Leader>ff", ":Telescope find_files<CR>", { desc = "Find File" })
+map("n", "<Leader>fg", ":Telescope live_grep<CR>", { desc = "Find in Files" })
+map("n", "<Leader>fb", ":Telescope buffers<CR>", { desc = "Find Open Buffer" })
+map("n", "<Leader>fh", ":Telescope help_tags<CR>")
+map("n", "<Leader>rl", ":luafile %<Cr>", { desc = "Run current Lua file" })
+
+-- [F]ile Explorer in Oil
+-- map("n", "<Leader>to", ":Oil .<Cr>", { desc = "Open Oil at $CWD" })
+map("n", "<Leader>fo", function() require("oil").open_float(vim.fn.expand("%:p:h")) end, { desc = "Open Oil File Explorer at CWD" })
+map("n", "-", ":Oil ..<Cr>", { desc = "Oil quickly jump up" })
+
+-- [T]erminal
+map("n", ":", "<Cmd>FineCmdline<Cr>", { noremap = true, desc = "Open Floating Command Line" })
+map("n", "<Leader>tt", "<Cmd>ToggleTerm direction=float<Cr>", { desc = "Toggle Floating Terminal" })
+map("n", "<Leader>th", "<Cmd>ToggleTerm<Cr>", { desc = "Toggle Terminal" })
+map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit Terminal Mode" })
+
+-- [T]abs
 map("n", "<Leader>tn", ":tabnew<Cr>")
 map("n", "<Leader>to", ":tabonly<Cr>")
 map("n", "<Leader>tc", ":tabclose<Cr>")
 map("n", "<Leader>tm", ":tabmove ", { desc = "Move to Tab (specify index)" })
 
--- Code, Formatting
-v_map("<", "<gv", { desc = "Increase Indentation" })
-v_map(">", ">gv", { desc = "Decrease Indentation" })
 
-n_map("<A-j>", "<Cmd>m .+1<Cr>==", { desc = "Shift line up" })
-n_map("<A-k>", "<Cmd>m .-2<Cr>==", { desc = "Shift line down" })
-v_map("<A-j>", ":m '>+1<Cr>gv=gv", { desc = "Shift line up" })
-v_map("<A-k>", ":m '>-2<Cr>gv=gv", { desc = "Shift line down" })
-
--- toggle quickfix and diagnostic lists
+-- [D]iagnostics
 n_map("<Leader>qf", ":copen<CR>")
 n_map("<Leader>qd", ":lnext<CR>")   -- next diagnostic
 n_map("<Leader>qD", ":lprev<CR>")   -- prev diagnostic
 
--- git signs
+-- [G]it
 n_map("<Leader>gs", ":Gitsigns toggle_signs<CR>")
 n_map("<Leader>gp", ":Gitsigns preview_hunk<CR>")
 n_map("<Leader>gb", ":Gitsigns blame_line<CR>")
 
-
--- Oil
-n_map("<Leader>o", ":Oil .<Cr>", { desc = "Open Oil at $CWD" })
-n_map("<Leader>O", function() 
-	require("oil").open_float(vim.fn.expand("%:p:h"))
-end, { desc = "Open Oil floating at current file dir" })
-n_map("-", ":Oil ..<Cr>", { desc = "Oil quickly jump up" })
+-- [J]ava
+map("n", "<Leader>js", "<Cmd>JavaSettingsChangeRuntime<Cr>", { desc = "Change JDK version" })
+map("n", "<Leader>jc", "<Cmd>JavaBuildBuildWorkspace<Cr>", { desc = "Run full workspace build" })
+map("n", "<Leader>jC", "<Cmd>JavaBuildCleanWorkspace<Cr>", { desc = "Clear the workspace" })
+map("n", "<Leader>jr", "<Cmd>JavaRunnerRunMain<Cr>", { desc = "Run application or selectedc main class" })
+map("n", "<Leader>jR", "<Cmd>JavaRunnerStopMain<Cr>", { desc = "Stop application" })
+map("n", "<Leader>jta", "<Cmd>JavaTestRunCurrentClass<Cr>", { desc = "Run test class in active buffer" })
+map("n", "<Leader>jtt", "<Cmd>JavaTestRunCurrentMethod<Cr>", { desc = "Run test under cursor" })
+map("n", "<Leader>jtr", "<Cmd>JavaTestViewLastReport<Cr>", { desc = "Open last test report in popup window" })
+map("n", "<Leader>jev", "<Cmd>JavaRefactorExtractVariable<Cr>", { desc = "Create variable from value at cursor/ selection" })
