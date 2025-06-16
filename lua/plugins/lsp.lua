@@ -40,8 +40,18 @@ return {
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 		},
 		config = function()
+			local lang_servers = {
+				"lua_ls",	-- Lua
+				"pyright",	-- Python
+				"jdtls",	-- Java
+				"bashls",	-- Bash
+				"lemminx",	-- XML
+				"clangd",	-- C/C++
+				"marksman",	-- Markdown
+				"dockerls", "docker_compose_language_service",
+			}
 			deps.mason_lspconfig.setup({
-				ensure_installed        = deps.servers,
+				ensure_installed        = lang_servers,
 				automatic_installation  = true,		-- install missing LSPs
 				automatic_enable        = true,		-- disable enabling servers by default
 			})

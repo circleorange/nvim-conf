@@ -33,6 +33,8 @@ require("lazy").setup({
 	require("lsp.python"),
 	require("lsp.c"),
 	require("lsp.docker"),
+	require("lsp.markdown"),
+	require("lsp.latex"),
 
     -- Code
     require("plugins.completions"),
