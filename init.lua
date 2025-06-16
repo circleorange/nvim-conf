@@ -30,6 +30,7 @@ require("lazy").setup({
     require("lsp.lua_ls"),
     require("lsp.java"),
 	require("lsp.bash"),
+	require("lsp.python"),
 
     -- Code
     require("plugins.completions"),

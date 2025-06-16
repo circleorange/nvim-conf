@@ -58,7 +58,6 @@ return {
 					"stylua",               -- Lua formatter
 					"black",                -- Python formatter
 					"prettier",             -- markdown/js/html formatter
-					-- "shellcheck",			-- linting for bashls
 				},
 				auto_update = true,
 			})

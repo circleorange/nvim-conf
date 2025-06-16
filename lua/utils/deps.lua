@@ -6,6 +6,8 @@ local servers = {
 	"lemminx",
 }
 
+-- These plugins are the ones that are exported and available in the deps module.
+-- Instead of require("mason-tool-installer"), Use deps.mason_tools.
 local plugin_map = {
 	lspconfig		= "lspconfig",
 	mason			= "mason",
@@ -14,9 +16,9 @@ local plugin_map = {
     cmp				= "cmp",
 	cmp_nvim_lsp	= "cmp_nvim_lsp",
     luasnip			= "luasnip",
-	java			= "java",
 	telescope		= "telescope",
 	cmdline			= "fine-cmdline",
+	java			= "java",
 }
 
 local M = {}
