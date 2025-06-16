@@ -58,6 +58,7 @@ return {
 					"stylua",               -- Lua formatter
 					"black",                -- Python formatter
 					"prettier",             -- markdown/js/html formatter
+					"cpptools",
 				},
 				auto_update = true,
 			})

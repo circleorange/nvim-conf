@@ -4,6 +4,8 @@ local servers = {
 	"jdtls",
 	"bashls",
 	"lemminx",
+	"clangd",
+	"dockerls", "docker_compose_language_service",
 }
 
 -- These plugins are the ones that are exported and available in the deps module.

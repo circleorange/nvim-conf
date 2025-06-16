@@ -30,13 +30,18 @@ nvim --version
 ## Issues
 - Cannot use Mason v2.0 due to missing nvim-java support (https://github.com/nvim-java/nvim-java/issues/384)
 
-## Structure
 
-## Plugins:
+## Plugins
 
-
-### Motions: 
+### Motions
 - aaronik/treewalker.nvim: Move around code in syntax tree aware manner.
+
+### Language Support
+
+- C:    Uses clangd
+- Java: "nvim-java", with potential replacement "nvim-jdtls" but requires more manual setup.
+- Python: Using pyright, however, potential replacement can be ruff (refer to LazyVim implementation).
+- Docker: Uses dockerls
 
 ## Potential Plugins
 - "zeioth/compiler.nvim"
