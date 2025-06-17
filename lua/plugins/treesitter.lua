@@ -13,15 +13,21 @@ return {
     config	= function()
         require("nvim-treesitter.configs").setup({
             ensure_installed = {
-                "bash",
+				-- Scripting
+                "bash", "dockerfile",
+
+				-- Data
+                "yaml", "json", "toml", "xml",
+                "markdown", "markdown_inline",
+
+				-- Frontend languages
                 "html",
-                "yaml", "json",
+
+				-- Backend languages
                 "lua", "luadoc",
                 "c", "cpp", "cmake",
-                "markdown", "markdown_inline",
                 "java",
                 "python",
-				"dockerfile",
             },
             highlight	= { enable = true },
             indent		= { enable = true },

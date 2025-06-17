@@ -57,7 +57,7 @@ map("n", "<Leader>fo", function() require("oil").open_float(vim.fn.expand("%:p:h
 map("n", "-", ":Oil ..<Cr>", { desc = "Oil quickly jump up" })
 
 -- [T]erminal
-map("n", ":", "<Cmd>FineCmdline<Cr>", { noremap = true, desc = "Open Floating Command Line" })
+-- map("n", ":", "<Cmd>FineCmdline<Cr>", { noremap = true, desc = "Open Floating Command Line" })
 map("n", "<Leader>tt", "<Cmd>ToggleTerm direction=float<Cr>", { desc = "Toggle Floating Terminal" })
 map("n", "<Leader>th", "<Cmd>ToggleTerm<Cr>", { desc = "Toggle Terminal" })
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit Terminal Mode" })

@@ -4,13 +4,12 @@ return {
 	-- - <Cmd>ClangdSwitchSourceHeader<Cr>: Switch between header and source files.
 	{
 		"neovim/nvim-lspconfig",
-		ft = {"c", "cpp"},
 		dependencies = {
 			"williamboman/mason.nvim",
 			"mfussenegger/nvim-dap",
 		},
 		config = function()
-			require("clangd").setup({
+			vim.lsp.config("clangd", {
 				cmd			= {"clangd"},
 				filetypes	= {"c", "cpp"},
 				root_dir	= function(fname)
@@ -18,7 +17,7 @@ return {
 						"Makefile", "configure.ac", "meson.build", "build.ninja"
 					)(fname) or require("lspconfig.util").root_pattern(
 							"compile_commands.json", "compile_flags.txt", ".git"
-					)(fname)
+						)(fname)
 				end
 			})
 		end

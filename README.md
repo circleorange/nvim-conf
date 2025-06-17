@@ -4,9 +4,17 @@
 
 ### Ubuntu
 
-- Install dependencies:
+- Install neovim dependencies (Drop any unneeded):
 ```
-sudo apt install gcc npm python3
+sudo apt install gcc npm python3 luarocks unzip build-essential
+```
+- Install LaTex dependencies:
+```
+sudo apt install texlive-latex-extra biber latexmk texlive-bibtex-extra
+```
+- Install neovim plugin dependencies:
+```
+sudo npm install -g neovim
 ```
 - Download latest version of Ubuntu (not available on apt):
 ```

@@ -15,11 +15,9 @@ return {
 		jdtls = { version = "^1.43.0" },
 	},
 	config = function()
-		local deps = require("utils.deps")
-		deps.java.setup({})
+		require("java").setup({})
 		-- jdtls onfigurations, e.g. settings.java.configuraiton.runtimes.{name = "Java21", path = "jdk", default = true}
-		-- vim.lsp.config("jdtls", {})
-		deps.lspconfig.jdtls.setup({
+		vim.lsp.config("jdtls", {
 			settings = { java = { configuration = { runtimes = {
 				{
 					name = "Java21",

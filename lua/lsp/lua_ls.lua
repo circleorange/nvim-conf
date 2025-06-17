@@ -10,11 +10,11 @@ return {
 		},
 	},
 	config = function()
-		--vim.lsp.config("lua_ls", {
-		local deps = require("utils.deps")
-		deps.lspconfig.lua_ls.setup({
-			filetypes = { "lua" },
-			root_markers = { ".luarc.json", ".luarc.jsonc" },
+		vim.lsp.config("lua_ls", {
+			-- Defaults: 
+			--		> cmd			= {"lua-language-server"},
+			--		> filetypes		= {"lua"},
+			--		> root_markers	= {".luarc.json", "stylua.toml", ".git"},
 			settings = { Lua = {
 				runtime		= { version = { "LuaJIT" } },
 				diagnostics = { globals = { "vim", "require" }},

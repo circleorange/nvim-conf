@@ -13,14 +13,18 @@ vim.opt.rtp:prepend(lazypath)
 require("config.options")
 require("config.keymaps")
 
--- load plugins using Lazy for management
+-- Load plugins using Lazy package manager.
+-- Commands:
+-- <Cmd>Lazy install	- Install missing plugins, does not update existing ones.
+-- <Cmd>Lazy update		- Update plugins that are already installed.
+-- <Cmd>Lazy sync		- Both install missing plugins, update all, and clean any unused plugins.
 require("lazy").setup({
 
     -- General Editor
     require("plugins.file_explorer"),
     require("plugins.file_search"),
     require("plugins.terminal"),
-    require("plugins.cmdline"),
+    -- require("plugins.cmdline"),
     require("plugins.project"),
     require("plugins.cursor"),
     require("plugins.misc"),
@@ -28,7 +32,7 @@ require("lazy").setup({
 
     -- Language-specific
     require("lsp.lua_ls"),
-    require("lsp.java"),
+    -- require("lsp.java"),
 	require("lsp.bash"),
 	require("lsp.python"),
 	require("lsp.c"),
@@ -40,5 +44,5 @@ require("lazy").setup({
     require("plugins.completions"),
     require("plugins.treesitter"),
     require("plugins.motions"),
-    require("plugins.lsp"),
+    require("plugins.lsp_config"),
 })
