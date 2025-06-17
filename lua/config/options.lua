@@ -39,12 +39,12 @@ opt.splitbelow = true -- When splitting horizontally, new window goes to the bot
 opt.autoread = true   -- Automatically re-read files if modified outside of Neovim
 
 -- Performance
-opt.updatetime = 250 -- Faster completion (default is 4000ms)
-opt.timeoutlen = 500 -- Time in milliseconds to wait for a mapped sequence to complete
-opt.timeoutlen = 10 -- Time in milliseconds to wait for a key code sequence
+-- opt.updatetime = 250 -- Faster completion (default is 4000ms)
+-- opt.timeoutlen = 500 -- Time in milliseconds to wait for a mapped sequence to complete
+-- opt.timeoutlen = 10 -- Time in milliseconds to wait for a key code sequence
 
 -- Diagnostics display (pop-up on cursor hover)
-vim.o.updatetime = 250 -- Send CursorHold event faster
+-- vim.o.updatetime = 250 -- Send CursorHold event faster
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
     pattern = "*",
     callback = function()

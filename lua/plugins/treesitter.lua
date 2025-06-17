@@ -1,5 +1,5 @@
 return {
-	-- Tree-based syntax highlighting.
+	-- Tree-based syntax highlighting (https://github.com/nvim-treesitter/nvim-treesitter).
 	--
 	-- Commands:
 	--		- <Cmd>TSInstall {lang}	- Install specific LSP, can be `all`.
@@ -10,32 +10,37 @@ return {
 	branch	= "main",
 	lazy	= false,
 	build	= ":TSUpdate",
-	config	= function()
-		local ts = require("nvim-treesitter")
-
-		-- No longer need to call setup() using new version of treesitter.
-
-		ts.install({
-			-- Scripting
-			"lua", "luadoc",
-			"bash", "dockerfile",
+	event	= "BufReadPost",
+	opts	= {
+		ensure_installed = {
+			"lua", "vim",
+			--"bash", "dockerfile",
 
 			-- Data
-			"yaml", "json", "toml", "xml",
-			"markdown", "markdown_inline",
+			--"yaml", "json", "toml", "xml",
+			--"markdown", "markdown_inline",
 
 			-- Frontend languages
-			"html",
+			--"html",
 
 			-- Backend languages
-			"c", "cpp", "cmake",
-			"java",
+			--"c", "cpp", "cmake",
+			--"java",
 			"python",
-		})
+		},
+	},
+	config	= function(_, opts)
+		local ts = require "nvim-treesitter"
+		ts.setup()
+		ts.install(opts.ensure_installed)
+		-- Treesitter feautures need to be manually enabled
 		vim.api.nvim_create_autocmd("FileType", {
 			pattern = {"lua", "python"},
 			callback = function()
-				vim.treesitter.start()
+				local ok = pcall(vim.treesitter.start) -- Syntax highlighting, provided by nvim-treesitter
+				if not ok then print("Treesitter failed to start") return end
+				vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Folds, by Neovim
+				vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" -- Indentation, by nvim-treesitter
 			end
 		})
 	end,

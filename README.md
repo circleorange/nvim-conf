@@ -56,3 +56,5 @@ nvim --version
 
 ## nvim commands
 `:lua print(vim.inspect(require("jdtls")))`
+
+## References

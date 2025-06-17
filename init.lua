@@ -2,9 +2,9 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-    local out = vim.fn.system({
-		"git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath
-	})
+    local out = vim.fn.system(
+	    {"git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath}
+    )
     if vim.v.shell_error ~= 0 then
         error("Error cloning lazy.nvim:\n" .. out)
     end
@@ -12,8 +12,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- load utils, basic settings, and keymaps
-require("config.options")
-require("config.keymaps")
+require "config.options"
+require "config.keymaps"
 
 -- Load plugins using lazy.nvim package manager.
 -- 
@@ -30,25 +30,26 @@ require("lazy").setup({
     require("plugins.file_search"),
     require("plugins.terminal"),
     -- require("plugins.cmdline"),
-    require("plugins.project"),
+    -- require("plugins.project"),
     require("plugins.cursor"),
-    require("plugins.misc"),
-    require("plugins.git"),
-	require("plugins.styles.theme"),
+    -- require("plugins.misc"),
+    -- require("plugins.git"),
+    require("plugins.styles.theme"),
 
     -- Language Server Protocols (LSP)
-    require("lsp.lua_ls"),
+    require "plugins.lsp.lua_ls",
+	--require "plugins.lsp.python",
     -- require("lsp.java"), -- Disabled due to issues with Mason 2.0
-	require("lsp.bash"),
-	require("lsp.python"),
-	require("lsp.c"),
+	-- require("lsp.bash"),
+	-- require("lsp.c"),
 	-- require("lsp.docker"),
 	-- require("lsp.markdown"),
 	-- require("lsp.latex"),
 
     -- Code
-    require("plugins.completions"),
-    -- require("plugins.treesitter"),
-    require("plugins.motions"),
-    require("plugins.lsp_config"), -- Must run after LSP
+    require "plugins.treesitter",
+    require "plugins.completions",
+    require "plugins.motions",
+    require "plugins.lsp.lsp_config", -- Must run after LSP
 })
+vim.cmd.colorscheme("vague")
