@@ -23,7 +23,7 @@ require "config.keymaps"
 --		- <Cmd>Lazy update	- Update plugins that are already installed.
 --		- <Cmd>Lazy sync	- Both install missing plugins, update all, and clean any unused plugins.
 --
-require("lazy").setup({
+require("lazy").setup {
 
     -- General Editor
     require("plugins.file_explorer"),
@@ -33,12 +33,12 @@ require("lazy").setup({
     -- require("plugins.project"),
     require("plugins.cursor"),
     -- require("plugins.misc"),
-    -- require("plugins.git"),
+    require("plugins.git"),
     require("plugins.styles.theme"),
 
     -- Language Server Protocols (LSP)
     require "plugins.lsp.lua_ls",
-	--require "plugins.lsp.python",
+	require "plugins.lsp.python",
     -- require("lsp.java"), -- Disabled due to issues with Mason 2.0
 	-- require("lsp.bash"),
 	-- require("lsp.c"),
@@ -47,9 +47,9 @@ require("lazy").setup({
 	-- require("lsp.latex"),
 
     -- Code
-    require "plugins.treesitter",
-    require "plugins.completions",
+    require "plugins.code.treesitter",
+    require "plugins.code.completions",
     require "plugins.motions",
     require "plugins.lsp.lsp_config", -- Must run after LSP
-})
+}
 vim.cmd.colorscheme("vague")

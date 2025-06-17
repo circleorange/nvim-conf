@@ -10,10 +10,10 @@ return {
 	branch	= "main",
 	lazy	= false,
 	build	= ":TSUpdate",
-	event	= "BufReadPost",
+	--event	= "BufReadPost",
 	opts	= {
 		ensure_installed = {
-			"lua", "vim",
+			"lua", "luadoc", "vim",
 			--"bash", "dockerfile",
 
 			-- Data
@@ -28,14 +28,16 @@ return {
 			--"java",
 			"python",
 		},
+		--highlight	= {enable = true},
+		--indent		= {enable = true},
 	},
-	config	= function(_, opts)
+	config = function(_, opts)
 		local ts = require "nvim-treesitter"
 		ts.setup()
 		ts.install(opts.ensure_installed)
 		-- Treesitter feautures need to be manually enabled
 		vim.api.nvim_create_autocmd("FileType", {
-			pattern = {"lua", "python"},
+			pattern = {"lua", "luadoc", "python"},
 			callback = function()
 				local ok = pcall(vim.treesitter.start) -- Syntax highlighting, provided by nvim-treesitter
 				if not ok then print("Treesitter failed to start") return end

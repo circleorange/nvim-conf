@@ -44,7 +44,7 @@ opt.autoread = true   -- Automatically re-read files if modified outside of Neov
 -- opt.timeoutlen = 10 -- Time in milliseconds to wait for a key code sequence
 
 -- Diagnostics display (pop-up on cursor hover)
--- vim.o.updatetime = 250 -- Send CursorHold event faster
+vim.o.updatetime = 2000 -- Send CursorHold event faster
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
     pattern = "*",
     callback = function()
