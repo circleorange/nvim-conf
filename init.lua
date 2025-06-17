@@ -32,7 +32,7 @@ require("lazy").setup {
     -- require("plugins.cmdline"),
     -- require("plugins.project"),
     require("plugins.cursor"),
-    -- require("plugins.misc"),
+    require("plugins.misc"),
     require("plugins.git"),
     require("plugins.styles.theme"),
 
@@ -45,11 +45,12 @@ require("lazy").setup {
 	-- require("lsp.docker"),
 	-- require("lsp.markdown"),
 	-- require("lsp.latex"),
+    require "plugins.lsp.lsp_config", -- Must run after LSP
 
     -- Code
     require "plugins.code.treesitter",
     require "plugins.code.completions",
+	require "plugins.code.diagnostics",
     require "plugins.motions",
-    require "plugins.lsp.lsp_config", -- Must run after LSP
 }
 vim.cmd.colorscheme("vague")

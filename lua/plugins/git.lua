@@ -1,5 +1,6 @@
 return {
 	-- Git UI
+	-- Alternatives: snacks.nvim integrates lazygit for neovim
 	-- 
 	-- Commands:
 	--		- <Cmd>Neogit			- Open status buffer in new tab
