@@ -41,7 +41,7 @@ opt.autoread = true   -- Automatically re-read files if modified outside of Neov
 -- Performance
 opt.updatetime = 250 -- Faster completion (default is 4000ms)
 opt.timeoutlen = 500 -- Time in milliseconds to wait for a mapped sequence to complete
-opt.ttimeoutlen = 10 -- Time in milliseconds to wait for a key code sequence
+opt.timeoutlen = 10 -- Time in milliseconds to wait for a key code sequence
 
 -- Diagnostics display (pop-up on cursor hover)
 vim.o.updatetime = 250 -- Send CursorHold event faster

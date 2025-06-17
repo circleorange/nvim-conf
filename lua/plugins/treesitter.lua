@@ -1,38 +1,42 @@
 return {
-	-- Syntax highlighting.
+	-- Tree-based syntax highlighting.
+	--
 	-- Commands:
-	-- <Cmd>TSInstall {language} - Install language.
-	-- <Cmd>TSUpdate - Upate all installed languages, or specify with {language}.
-	-- <Cmd>TSInstallInfo - List all available languages and their installation status.
-	-- <Cmd>TSModuleInfo [{module}] - List information about modules state for each file type.
-	-- <Cmd>TSEnable {module} - Enable module on every buffer, vice versa for <Cmd>TSDisable.
-    "nvim-treesitter/nvim-treesitter",
-    branch	= "master",
+	--		- <Cmd>TSInstall {lang}	- Install specific LSP, can be `all`.
+	--		- <Cmd>TSUpdate			- Update all installed languages, or specify with {language}.
+	--		- <Cmd>TSLog			- Show logs from previous installations, updates, and uninstalls.
+	--
+	"nvim-treesitter/nvim-treesitter",
+	branch	= "main",
 	lazy	= false,
-    build	= ":TSUpdate",
-    config	= function()
-        require("nvim-treesitter.configs").setup({
-            ensure_installed = {
-				-- Scripting
-                "bash", "dockerfile",
+	build	= ":TSUpdate",
+	config	= function()
+		local ts = require("nvim-treesitter")
 
-				-- Data
-                "yaml", "json", "toml", "xml",
-                "markdown", "markdown_inline",
+		-- No longer need to call setup() using new version of treesitter.
 
-				-- Frontend languages
-                "html",
+		ts.install({
+			-- Scripting
+			"lua", "luadoc",
+			"bash", "dockerfile",
 
-				-- Backend languages
-                "lua", "luadoc",
-                "c", "cpp", "cmake",
-                "java",
-                "python",
-            },
-            highlight	= { enable = true },
-            indent		= { enable = true },
-            textobjects	= { enable = false },
-            incremental_selection = { enable = true },
-        })
-    end,
+			-- Data
+			"yaml", "json", "toml", "xml",
+			"markdown", "markdown_inline",
+
+			-- Frontend languages
+			"html",
+
+			-- Backend languages
+			"c", "cpp", "cmake",
+			"java",
+			"python",
+		})
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = {"lua", "python"},
+			callback = function()
+				vim.treesitter.start()
+			end
+		})
+	end,
 }
