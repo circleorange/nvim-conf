@@ -1,5 +1,10 @@
-vim.g.mapleader = " "
+local set_map = require "utils.mapper".set_map
 local map = vim.keymap.set
+
+vim.g.mapleader = " "
+
+-- [D]iagnostics
+set_map("n", "<Leader>do", vim.diagnostic.open_float, "Show Diagnostic popup")
 
 -- [G]it
 map("n", "<Leader>gd", ":DiffviewOpen<Cr>", {desc = "Open Git Diff View"})
@@ -71,3 +76,4 @@ map("n", "<Leader>jta", "<Cmd>JavaTestRunCurrentClass<Cr>", { desc = "Run test c
 map("n", "<Leader>jtt", "<Cmd>JavaTestRunCurrentMethod<Cr>", { desc = "Run test under cursor" })
 map("n", "<Leader>jtr", "<Cmd>JavaTestViewLastReport<Cr>", { desc = "Open last test report in popup window" })
 map("n", "<Leader>jev", "<Cmd>JavaRefactorExtractVariable<Cr>", { desc = "Create variable from value at cursor/ selection" })
+

@@ -1,3 +1,4 @@
+-- Customisation of the diagnostic popup style
 local custom = require "utils.custom_icons"
 vim.diagnostic.config {
 	virtual_text = {
@@ -16,6 +17,15 @@ vim.diagnostic.config {
 		},
 	},
 }
+
+-- Trigger Diagnostic popup with cusor hover
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    pattern = "*",
+    callback = function()
+        vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+    end
+})
+
 return {
 	-- Configurations for LSPs installed by Mason by calling lspconfig.
 	-- Automation bridge between mason.nvim and nvim-lspconfig.

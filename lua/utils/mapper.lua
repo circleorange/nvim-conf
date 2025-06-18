@@ -1,7 +1,11 @@
 local M = {}
 
--- generic key mapper
-function M.map(mode, lhs, rhs, opts)
+-- Generic key mapper
+function M.set_map(mode, key, fn, desc)
+	vim.keymap.set(mode, key, fn, {desc = desc})
+end
+
+function M.map_old(mode, lhs, rhs, opts)
 	opts = vim.tbl_extend("force", { noremap = true, silent = true }, opts or {})
 	vim.keymap.set(mode, lhs, rhs, opts)
 end

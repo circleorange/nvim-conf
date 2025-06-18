@@ -1,17 +1,4 @@
-local opt = vim.opt -- For conciseness
-
--- File Explorer (nvim-tree)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
--- Diagnostics display (pop-up on cursor hover)
-vim.o.updatetime = 2000 -- Send CursorHold event faster
-vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-    pattern = "*",
-    callback = function()
-        vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
-    end
-})
+local opt = vim.opt
 
 -- General
 opt.guifont = "Agave Nerd Font"
@@ -35,7 +22,7 @@ opt.showmode = false      -- Don't show mode since it's in the status line
 opt.tabstop = 4        -- Number of spaces that a <Tab> in the file counts for
 opt.softtabstop = 4    -- Number of spaces that a <Tab> counts for when inserting a <Tab>
 opt.shiftwidth = 4     -- Number of spaces to use for each step of (auto)indent
-opt.expandtab = false   -- Use spaces instead of tabs
+opt.expandtab = true   -- Use spaces instead of tabs
 opt.autoindent = true  -- Copy indent from current line when starting a new line
 opt.smartindent = true -- Make indenting smart
 
@@ -52,7 +39,7 @@ opt.splitbelow = true -- When splitting horizontally, new window goes to the bot
 opt.autoread = true   -- Automatically re-read files if modified outside of Neovim
 
 -- Performance
--- opt.updatetime = 250 -- Faster completion (default is 4000ms)
+opt.updatetime = 2000 -- Duration to trigger cursor hover event (default is 4000ms)
 -- opt.timeoutlen = 500 -- Time in milliseconds to wait for a mapped sequence to complete
 -- opt.timeoutlen = 10 -- Time in milliseconds to wait for a key code sequence
 
