@@ -18,6 +18,7 @@ return {
 			-- Data
 			"yaml", "json", "toml", "xml",
 			"markdown", "markdown_inline",
+            "regex",
 
 			-- Frontend languages
 			--"html",
