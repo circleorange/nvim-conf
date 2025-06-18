@@ -24,14 +24,19 @@ require "config.keymaps"
 require("lazy").setup {
 
     -- General Editor
-    require "plugins.file_explorer",
+    require "plugins.git",
+    require "plugins.motions",
+    require "plugins.whichkey",
     require "plugins.file_search",
-    require "plugins.terminal",
-    -- require("plugins.cmdline"),
+    require "plugins.file_explorer",
+
+	-- UI
+    require "plugins.ui.snacks",
+    require "plugins.ui.icons",
+    require "plugins.ui.terminal",
+    -- require "plugins.ui.cmdline",
     -- require("plugins.project"),
     require "plugins.cursor",
-    require "plugins.misc",
-    require "plugins.git",
     require "plugins.styles.theme",
 
     -- Language Server Protocols (LSP)
@@ -49,6 +54,5 @@ require("lazy").setup {
     require "plugins.code.treesitter",
     require "plugins.code.completions",
 	require "plugins.code.diagnostics",
-    require "plugins.motions",
 }
 vim.cmd.colorscheme("vague")
