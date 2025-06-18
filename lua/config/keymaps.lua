@@ -1,30 +1,42 @@
-local n_map = require("utils.mapper").nmap
-local i_map = require("utils.mapper").imap
-local v_map = require("utils.mapper").vmap
-local x_map = require("utils.mapper").xmap
-local t_map = require("utils.mapper").tmap
-local c_map = require("utils.mapper").cmap
-
 vim.g.mapleader = " "
 local map = vim.keymap.set
 
--- Code Motions 
+-- File [E]xplorer
+map("n", "<Leader>eo", ":NvimTreeToggle<Cr>", {desc = "Toggle File Explorer"})
+map("n", "<Leader>ef", ":NvimTreeFocus<Cr>", {desc = "Focus on File Explorer"})
+map("n", "<Leader>el", ":NvimTreeFindFile<Cr>", {desc = "Find File in File Explorer"})
+map("n", "<Leader>ec", ":NvimTreeCollapse<Cr>", {desc = "Collapse File Explorer"})
+
+-- Code [D]iagnostics
+map("n", "<Leader>do", ":Trouble diagnostics toggle<Cr>", {desc = "Open Diagnostics (Trouble)"})
+map("n", "<Leader>db", ":Trouble diagnostics toggle filter.buf=0<Cr>", {desc = "Buffer Diagnostics (Trouble)"})
+map("n", "<Leader>ds", ":Trouble symbols toggle focus=false<Cr>", {desc = "Symbols (Trouble)"})
+map("n", "<Leader>dl", ":Trouble lsp toggle focus=false win.position=right<Cr>", {desc = "LSP Definitions / References / ... (Trouble)"})
+
+-- Language Server
 local lsp_opts = { noremap = true, silent = true }
 map("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("keep", lsp_opts, { desc = "Go to [d]efinition" } ))
 map("n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("keep", lsp_opts, { desc = "Go to [D]eclaration" } ))
 map("n", "gi", vim.lsp.buf.implementation, vim.tbl_extend("keep", lsp_opts, { desc = "Go to [I]mplementation" }))
 map("n", "gr", vim.lsp.buf.references, vim.tbl_extend("keep", lsp_opts, { desc = "Go to [R]eferences" }))
 
--- Window Navigation (<C-w>hjkl)
--- Treewalker
-map({"n", "v"}, "<C-k>", "<Cmd>Treewalker Up<Cr>", { silent = true })
-map({"n", "v"}, "<C-j>", "<Cmd>Treewalker Down<Cr>", { silent = true })
-map({"n", "v"}, "<C-h>", "<Cmd>Treewalker Left<Cr>", { silent = true })
-map({"n", "v"}, "<C-l>", "<Cmd>Treewalker Right<Cr>", { silent = true })
-map("n", "<C-S-k>", "<Cmd>Treewalker SwapUp<Cr>", { silent = true })
-map("n", "<C-S-j>", "<Cmd>Treewalker SwapDown<Cr>", { silent = true })
-map("n", "<C-S-h>", "<Cmd>Treewalker SwapLeft<Cr>", { silent = true })
-map("n", "<C-S-l>", "<Cmd>Treewalker SwapRight<Cr>", { silent = true })
+-- Window Management and Navigation 
+-- Navigate: <C-w> hjkl
+map("n", "<S-Up>", "<Cmd>resize +2<Cr>")
+map("n", "<S-Down>", "<Cmd>resize -2<Cr>")
+map("n", "<S-Left>", "<Cmd>vertical resize -2<Cr>")
+map("n", "<S-Right>", "<Cmd>vertical resize +2<Cr>")
+
+-- Code Motions
+map({"n", "x", "o"}, "<C-f>", ":lua require'flash'.jump()<Cr>", {desc = "Flash Jump"})
+map({"n", "v"}, "<C-k>", ":Treewalker Up<Cr>", { silent = true })
+map({"n", "v"}, "<C-j>", ":Treewalker Down<Cr>", { silent = true })
+map({"n", "v"}, "<C-h>", ":Treewalker Left<Cr>", { silent = true })
+map({"n", "v"}, "<C-l>", ":Treewalker Right<Cr>", { silent = true })
+map("n", "<C-S-k>", ":Treewalker SwapUp<Cr>", { silent = true })
+map("n", "<C-S-j>", ":Treewalker SwapDown<Cr>", { silent = true })
+map("n", "<C-S-h>", ":Treewalker SwapLeft<Cr>", { silent = true })
+map("n", "<C-S-l>", ":Treewalker SwapRight<Cr>", { silent = true })
 
 -- Buffer nav & management
 map("n", "<S-h>", "<Cmd>bprevious<Cr>", { desc = "Previous Buffer" })
@@ -33,8 +45,8 @@ map("n", "<Leader>bb", "<Cmd>e #<Cr>", { desc = "Switch to Other Buffer" })
 map("n", "<Leader>bd", ":bd<CR>", { desc = "Close buffer" })
 
 -- Code, Formatting
-v_map("<", "<gv", { desc = "Increase Indentation" })
-v_map(">", ">gv", { desc = "Decrease Indentation" })
+map("v", "<", "<gv", { desc = "Increase Indentation" })
+map("v", ">", ">gv", { desc = "Decrease Indentation" })
 map("n", "<A-j>", "<Cmd>m .+1<Cr>==", { desc = "Shift line up" })
 map("n", "<A-k>", "<Cmd>m .-2<Cr>==", { desc = "Shift line down" })
 map("v", "<A-j>", "<Cmd>m '>+1<Cr>gv=gv", { desc = "Shift line up" })
@@ -68,16 +80,11 @@ map("n", "<Leader>to", ":tabonly<Cr>")
 map("n", "<Leader>tc", ":tabclose<Cr>")
 map("n", "<Leader>tm", ":tabmove ", { desc = "Move to Tab (specify index)" })
 
-
--- [D]iagnostics
-n_map("<Leader>qf", ":copen<CR>")
-n_map("<Leader>qd", ":lnext<CR>")   -- next diagnostic
-n_map("<Leader>qD", ":lprev<CR>")   -- prev diagnostic
-
 -- [G]it
-n_map("<Leader>gs", ":Gitsigns toggle_signs<CR>")
-n_map("<Leader>gp", ":Gitsigns preview_hunk<CR>")
-n_map("<Leader>gb", ":Gitsigns blame_line<CR>")
+map("n", "<Leader>go", ":Neogit<Cr>", {desc = "Open Neogit UI"})
+map("n", "<Leader>gs", ":Gitsigns toggle_signs<CR>")
+map("n", "<Leader>gp", ":Gitsigns preview_hunk<CR>")
+map("n", "<Leader>gb", ":Gitsigns blame_line<CR>")
 
 -- [J]ava
 map("n", "<Leader>js", "<Cmd>JavaSettingsChangeRuntime<Cr>", { desc = "Change JDK version" })

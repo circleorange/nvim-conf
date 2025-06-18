@@ -42,6 +42,7 @@ return {
 					{ name = "luasnip" },
 					{ name = "buffer" },
 					{ name = "path" },
+					{name = "lazydev", group_index = 0}, -- Group index 0 to skip loading LuaLS completions
 				}),
 			})
 		end,

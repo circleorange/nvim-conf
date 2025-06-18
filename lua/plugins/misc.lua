@@ -7,11 +7,12 @@ return {
 			local wk = require("which-key")
 
 			wk.add({
+				{"<Leader>d", group = "Diagnostics"},
+				{"<Leader>e", group = "File Explorer"},
 				{"<Leader>f", group = "Project and Files"},
-				{"<Leader>t", group = "Terminal and Tabs"},
-				{"<Leader>j", group = "Java"},
 				{"<Leader>g", group = "Git"},
-				{"<Leader>q", group = "Diagnostics"},
+				{"<Leader>j", group = "Java"},
+				{"<Leader>t", group = "Terminal and Tabs"},
 			})
 
 		end -- end of config

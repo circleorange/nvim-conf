@@ -4,10 +4,11 @@ return {
 		opts = {
 			highlight			= true,			-- briefly highlight node after jumping to it
 			highlight_duration	= 250,
-			highlight_gorup		= 'CursorLine', -- colour of the highlight
+			highlight_group		= 'CursorLine', -- colour of the highlight
 		},
 	},
     {
+		-- Fast Code Navigation
 		"folke/flash.nvim",
 		event	= "VeryLazy",
 		opts	= {},

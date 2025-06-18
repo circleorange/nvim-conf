@@ -5,9 +5,7 @@ if not vim.loop.fs_stat(lazypath) then
     local out = vim.fn.system(
 	    {"git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath}
     )
-    if vim.v.shell_error ~= 0 then
-        error("Error cloning lazy.nvim:\n" .. out)
-    end
+    if vim.v.shell_error ~= 0 then error("Error cloning lazy.nvim:\n" .. out) end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -26,15 +24,15 @@ require "config.keymaps"
 require("lazy").setup {
 
     -- General Editor
-    require("plugins.file_explorer"),
-    require("plugins.file_search"),
-    require("plugins.terminal"),
+    require "plugins.file_explorer",
+    require "plugins.file_search",
+    require "plugins.terminal",
     -- require("plugins.cmdline"),
     -- require("plugins.project"),
-    require("plugins.cursor"),
-    require("plugins.misc"),
-    require("plugins.git"),
-    require("plugins.styles.theme"),
+    require "plugins.cursor",
+    require "plugins.misc",
+    require "plugins.git",
+    require "plugins.styles.theme",
 
     -- Language Server Protocols (LSP)
     require "plugins.lsp.lua_ls",

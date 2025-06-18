@@ -1,8 +1,13 @@
 return {
-	-- Plugin to configure Lua languag server, specifically for editing neovim configurations.
+	-- Plugin to configure Lua language server, specifically for editing neovim configurations.
 	-- Requirements: Uninstall or disable neodev.nvim
+	--
+	-- Commands:
+	--		- <Cmd>LazyDev		- Show notification with lazydev settings for current buffer.
+	--		- <Cmd>LazyDev lsp	- Show notification with lazydev settings for any attached LSP servers.
+	--
 	"folke/lazydev.nvim",
-	ft = "lua", -- only load for lua files
+	ft = "lua", -- Only load for lua files
 	opts = {
 		library = {
 			path = "luvit-meta/library",

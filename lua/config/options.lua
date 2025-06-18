@@ -1,5 +1,18 @@
 local opt = vim.opt -- For conciseness
 
+-- File Explorer (nvim-tree)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- Diagnostics display (pop-up on cursor hover)
+vim.o.updatetime = 2000 -- Send CursorHold event faster
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    pattern = "*",
+    callback = function()
+        vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+    end
+})
+
 -- General
 opt.guifont = "Agave Nerd Font"
 opt.mouse = "a"               -- Enable mouse support in all modes
@@ -43,11 +56,3 @@ opt.autoread = true   -- Automatically re-read files if modified outside of Neov
 -- opt.timeoutlen = 500 -- Time in milliseconds to wait for a mapped sequence to complete
 -- opt.timeoutlen = 10 -- Time in milliseconds to wait for a key code sequence
 
--- Diagnostics display (pop-up on cursor hover)
-vim.o.updatetime = 2000 -- Send CursorHold event faster
-vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-    pattern = "*",
-    callback = function()
-        vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
-    end
-})

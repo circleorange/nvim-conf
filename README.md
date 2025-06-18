@@ -8,15 +8,15 @@
 ```
 sudo apt install gcc npm python3 luarocks unzip build-essential
 ```
-- Install LaTex dependencies:
+- Optional, Install LaTex dependencies:
 ```
 sudo apt install texlive-latex-extra biber latexmk texlive-bibtex-extra
 ```
-- Install neovim plugin dependencies:
+- Install npm plugin dependencies:
 ```
-sudo npm install -g neovim
+sudo npm install -g neovim tree-sitter-cli
 ```
-- Download latest version of Ubuntu (not available on apt):
+- Download latest version of Neovim (not available on Ubuntu apt):
 ```
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 ```
@@ -24,6 +24,7 @@ curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x8
 ```
 tar -xvzf nvim-linux-x86_64
 mv nvim-linux-x86_64 ~/.local/
+rm nvim-linux-x86_64.tar.gz
 ```
 - In .bashrc, add the PATH to neovim:
 ```
@@ -36,7 +37,7 @@ nvim --version
 ```
 
 ## Issues
-- Cannot use Mason v2.0 due to missing nvim-java support (https://github.com/nvim-java/nvim-java/issues/384)
+- nvim-java not compatible with Mason v2.0 (https://github.com/nvim-java/nvim-java/issues/384)
 
 
 ## Plugins
