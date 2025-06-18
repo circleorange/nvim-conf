@@ -3,9 +3,15 @@ return {
 	-- Alternatives: snacks.nvim integrates lazygit for neovim
 	-- 
 	-- Commands:
-	--		- <Cmd>Neogit			- Open status buffer in new tab
-	--		- <Cmd>Neogit cwd=%:p:h - Use repository of current file
-	--		- <Cmd>Neogit commit	- Open commit dialogue
+	--		- <Cmd>Neogit				- Open status buffer in new tab
+	--		- <Cmd>Neogit cwd=%:p:h		- Use repository of current file
+	--		- <Cmd>Neogit commit		- Open commit dialogue
+	--		- :DiffviewFileHistory		- File history for current branch.
+	--		- :DiffviewFileHistory %	- File history for current file.
+	--		- :DiffviewOpen				- Compare against current index.
+	--		- :DiffviewClose			- Close current diffview.
+	--		- :DiffviewToggleFiles		- Toggle file panel.
+	--		- :DiffviiewRefresh			- Update entries in the file list of current diffview.
 	--
 	-- Usage:
 	--		- <Tab> - Toggle folds
@@ -17,7 +23,7 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"sindrets/diffview.nvim",
-			"nvim-telescope/telescope.nvim" -- Can be replaced with ibhagwan/fzf-lua
+			"folke/snacks.nvim",
 		},
 		config = function()
 			local neogit = require("neogit")

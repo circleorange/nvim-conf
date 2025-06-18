@@ -11,6 +11,7 @@ return {
 		--		:NvimTreeCollapse	- Collapse folds
 		--
 		"nvim-tree/nvim-tree.lua",
+		enabled = false,
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			require("nvim-tree").setup {
@@ -27,7 +28,7 @@ return {
 		"stevearc/oil.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
-			require("oil").setup({
+			require("oil").setup {
 				use_default_keymaps = false,
 				keymaps = {
 					["<CR>"]  = "actions.select",
@@ -36,7 +37,7 @@ return {
 					["<C-r>"] = "actions.refresh",
 					["?"]     = "actions.show_help",
 				},
-			})
+			}
 		end,
 	}
 }

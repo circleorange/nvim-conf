@@ -27,16 +27,13 @@ require("lazy").setup {
     require "plugins.git",
     require "plugins.motions",
     require "plugins.whichkey",
-    require "plugins.file_search",
     require "plugins.file_explorer",
 
 	-- UI
-    require "plugins.ui.snacks",
+    require "plugins.snacks",
+    require "plugins.mini",
     require "plugins.ui.icons",
-    require "plugins.ui.terminal",
-    -- require "plugins.ui.cmdline",
-    -- require("plugins.project"),
-    require "plugins.cursor",
+    require "plugins.ui.cursor",
     require "plugins.styles.theme",
 
     -- Language Server Protocols (LSP)
@@ -53,6 +50,5 @@ require("lazy").setup {
     -- Code
     require "plugins.code.treesitter",
     require "plugins.code.completions",
-	require "plugins.code.diagnostics",
 }
 vim.cmd.colorscheme("vague")

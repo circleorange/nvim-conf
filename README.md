@@ -1,4 +1,4 @@
-# nvim-conf
+# Neovim Configurations
 
 ## Build
 
@@ -6,7 +6,7 @@
 
 - Install neovim dependencies (Drop any unneeded):
 ```
-sudo apt install gcc npm python3 luarocks unzip build-essential
+sudo apt install gcc npm python3 luarocks unzip build-essential fd-find
 ```
 - Optional, Install LaTex dependencies:
 ```
@@ -39,21 +39,9 @@ nvim --version
 ## Issues
 - nvim-java not compatible with Mason v2.0 (https://github.com/nvim-java/nvim-java/issues/384)
 
-
-## Plugins
-
-### Motions
-- aaronik/treewalker.nvim: Move around code in syntax tree aware manner.
-
-### Language Support
-
-- C:    Uses clangd
-- Java: "nvim-java", with potential replacement "nvim-jdtls" but requires more manual setup.
-- Python: Using pyright, however, potential replacement can be ruff (refer to LazyVim implementation).
-- Docker: Uses dockerls
-
 ## Potential Plugins
 - "zeioth/compiler.nvim"
+- harpoon
 
 ## nvim commands
 `:lua print(vim.inspect(require("jdtls")))`

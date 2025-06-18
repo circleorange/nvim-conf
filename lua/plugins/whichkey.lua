@@ -4,12 +4,15 @@ return {
 	config	= function()
 
 		require"which-key".add {
+			{"<Leader>b", group = "Buffer"},
 			{"<Leader>d", group = "Diagnostics"},
-			{"<Leader>e", group = "File Explorer"},
-			{"<Leader>f", group = "Project and Files"},
+			{"<Leader>e", group = "Explorer"},
+			{"<Leader>f", group = "Find (Files, Project)"},
 			{"<Leader>g", group = "Git"},
+			{"<Leader>s", group = "Search"},
 			{"<Leader>j", group = "Java"},
-			{"<Leader>t", group = "Terminal and Tabs"},
+			{"<Leader>t", group = "Terminal"},
+			{"<Leader>u", group = "Toggle"},
 		}
 	end -- config
 }
