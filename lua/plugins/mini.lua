@@ -15,7 +15,7 @@ return {
 		-- Usage:
 		--		> vi"	- Select textobject inside ""
 		--		> vi"i(	- Select textobject inside "", then Expand selection inside ()
-		require "mini.ai".setup {
+		require("mini.ai").setup {
 			mappings = {
 				-- Main textobject prefixes
 				around = 'a',

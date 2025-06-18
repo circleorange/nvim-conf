@@ -1,3 +1,21 @@
+local custom = require "utils.custom_icons"
+vim.diagnostic.config {
+	virtual_text = {
+		spacing = 4, prefix = "●", severity = vim.diagnostic.severity.ERROR
+	},
+	float = {
+		border = "rounded", -- Options: single | double | rounded | solid
+	},
+	severity_sort = true,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = custom.icons.diagnostic.error,
+			[vim.diagnostic.severity.WARN] = custom.icons.diagnostic.warn,
+			[vim.diagnostic.severity.HINT] = custom.icons.diagnostic.hint,
+			[vim.diagnostic.severity.INFO] = custom.icons.diagnostic.info,
+		},
+	},
+}
 return {
 	-- Configurations for LSPs installed by Mason by calling lspconfig.
 	-- Automation bridge between mason.nvim and nvim-lspconfig.

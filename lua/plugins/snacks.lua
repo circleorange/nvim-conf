@@ -5,6 +5,7 @@ return {
 	priority = 1000,
 	lazy = false,
 	opts = {
+		bigfile = {enabled = true}, -- Management of big files
 		indent	= {enabled = true},	-- Show indent guides and scopes based on treesitter/ indent
 		explorer= {enabled = true},	-- Show indent guides and scopes based on treesitter/ indent
 		input	= {enabled = true},	-- Center input dialogue (command palette)
