@@ -2,26 +2,23 @@
 
 ## Plugins
 - LSP management: "neovim/nvim-lspconfig", "mason-org/mason-lspconfig.nvim", "mason-org/mason.nvim", "WhoIsSethDaniel/mason-tool-installer.nvim",
-- Code & Motions: "nvim-treesitter/nvim-treesitter", "aaronik/treewalker.nvim", "folke/flash.nvim", 
+- Code & Motions: "nvim-treesitter/nvim-treesitter", "aaronik/treewalker.nvim", "folke/flash.nvim",
 - Completions: "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip", "rafamadriz/friendly-snippets", "hrsh7th/nvim-cmp", "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "onsails/lspkind.nvim"
 - "folke/snacks.nvim": LSP functions, File Explorer, Picker, Lazygit, etc.
-- "echasnovski/mini.nvim": mini.pairs, mini.ai
-- Git: "NeogitOrg/neogit", 
-- Language specific: "folke/lazydev.nvim", "benlubas/molten-nvim"
+- "echasnovski/mini.nvim": mini.pairs, mini.ai, mini.icons
+- Git: "NeogitOrg/neogit",
+- Lua: "folke/lazydev.nvim",
+- Python: "benlubas/molten-nvim", "3rd/image.nvim",
+- Markdown: "MeanderingProgrammer/render-markdown.nvim",
 
 ## Build
 
 ### Ubuntu
-
 - Install neovim dependencies (Drop any unneeded):
 ```
 sudo apt install gcc npm python3 luarocks unzip build-essential fd-find
 ```
-- Optional, Install LaTex dependencies:
-```
-sudo apt install texlive-latex-extra biber latexmk texlive-bibtex-extra
-```
-- Install npm plugin dependencies:
+- Install plugin dependencies from npm:
 ```
 sudo npm install -g neovim tree-sitter-cli
 ```
@@ -43,6 +40,23 @@ source ~/.bashrc
 - Verify installation:
 ```
 nvim --version
+```
+
+#### LaTeX support
+- Install LaTex dependencies:
+```
+sudo apt install texlive-latex-extra biber latexmk texlive-bibtex-extra
+```
+
+#### Jupyter Notebook support
+- Install Remote Plugin API (Python client to Neovim) and Jupyter client:
+```
+pip3 install pynvim jupyter_client
+```
+> Additional dependencies can include: `pnglatex` (for rendering TeX equations), `pyperclip` (To use molten_copy_output).
+Alternatively, if using Conda:
+```
+conda install -c conda-forge jupyter_client
 ```
 
 ## Issues

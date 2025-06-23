@@ -10,7 +10,7 @@ return {
 	opts        = {
 		bigfile     = {enabled = true}, -- Management of big files
 		indent	    = {enabled = true},	-- Show indent guides and scopes based on treesitter/ indent
-		explorer    = {enabled = true},	-- Show indent guides and scopes based on treesitter/ indent
+		explorer    = {enabled = true},	-- File explorer
 		input	    = {enabled = true},	-- Center input dialogue (command palette)
 		toggle	    = {enabled = true},	-- Toggle keymaps integrated with which-key icons/ colours
 		picker	    = {enabled = true},	-- Used by other plugins, e.g. git branches
@@ -62,6 +62,7 @@ return {
 		{"<Leader>gb", function() Snacks.picker.git_branches() end, desc = "Git Branches"},
 		{"<Leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status"},
 		{"<Leader>gl", function() Snacks.lazygit() end, desc = "Open Lazygit"},
+		{"<Leader>gB", function() Snacks.gitbrowse() end, desc = "Open Git in Browser"},
 
 		-- [D]iagnostics
 		{"<Leader>da", function() Snacks.picker.diagnostics() end, desc = "Dignostics"},

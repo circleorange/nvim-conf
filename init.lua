@@ -14,7 +14,7 @@ require "config.options"
 require "config.keymaps"
 
 -- Load plugins using lazy.nvim package manager.
--- 
+--
 -- Commands:
 --		- <Cmd>Lazy			- Show managed plugin information.
 --		- <Cmd>Lazy install	- Install missing plugins, does not update existing ones.

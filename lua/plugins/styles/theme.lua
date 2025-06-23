@@ -8,19 +8,19 @@ return {
 			bold	= true,
 			italic	= true,
 
-			style = {
+			style   = {
 				-- "none" (default) / italic / bold
-				boolean		= "bold",
-				number		= "none",
-				float		= "none",
-				error		= "bold",
-				comments	= "italic",
+				boolean	     = "bold",
+				number	     = "none",
+				float		 = "none",
+				error		 = "bold",
+				comments	 = "italic",
 				conditionals = "none",
-				functions	= "none",
-				headings	= "bold",
-				operators	= "none",
-				strings		= "italic",
-				variables	= "none",
+				functions	 = "none",
+				headings	 = "bold",
+				operators	 = "none",
+				strings		 = "italic",
+				variables	 = "none",
 
 				-- keywords
 				keywords			= "none",

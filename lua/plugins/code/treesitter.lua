@@ -37,10 +37,9 @@ return {
 		ts.install(opts.ensure_installed)
 		-- Treesitter feautures need to be manually enabled
 		vim.api.nvim_create_autocmd("FileType", {
-			pattern = {"lua", "python", "toml", "yaml"},
+			pattern = {"lua", "python", "toml", "yaml", "markdown"},
 			callback = function()
-				local ok = pcall(vim.treesitter.start) -- Syntax highlighting, provided by nvim-treesitter
-				if not ok then print("Treesitter failed to start") return end
+				vim.treesitter.start() -- Syntax highlighting, provided by nvim-treesitter
 				vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Folds, by Neovim
 				vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" -- Indentation, by nvim-treesitter
 			end
