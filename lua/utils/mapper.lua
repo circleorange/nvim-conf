@@ -1,5 +1,12 @@
 local M = {}
 
+-- Set key map for plugin requiring function call
+function fmap(modes, key, fn, desc)
+    local opts = {}
+    if desc then opts.desc = desc end
+    vim.keymap.set(modes, key, fn, opts)
+end
+
 -- Generic key mapper
 function M.set_map(mode, key, fn, desc)
 	vim.keymap.set(mode, key, fn, {desc = desc})

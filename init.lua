@@ -32,18 +32,18 @@ require("lazy").setup {
 	-- UI
     require "plugins.snacks",
     require "plugins.mini",
-    require "plugins.ui.icons",
+    -- require "plugins.ui.icons",
     require "plugins.ui.cursor",
     require "plugins.styles.theme",
 
     -- Language Server Protocols (LSP)
     require "plugins.lsp.lua_ls",
 	require "plugins.lsp.python",
+	require("plugins.lsp.markdown"),
     -- require("lsp.java"), -- Disabled due to issues with Mason 2.0
 	-- require("lsp.bash"),
 	-- require("lsp.c"),
 	-- require("lsp.docker"),
-	-- require("lsp.markdown"),
 	-- require("lsp.latex"),
     require "plugins.lsp.lsp_config", -- Must run after LSP
 

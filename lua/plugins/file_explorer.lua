@@ -12,7 +12,9 @@ return {
 		--
 		"nvim-tree/nvim-tree.lua",
 		enabled = false,
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = {
+            {"echasnovski/mini.icons", opts = {}}
+        },
 		config = function()
 			require("nvim-tree").setup {
 				sort	= {sorter = "case_sensitive"},
@@ -23,10 +25,14 @@ return {
 		end,
 	},
 	{
-		-- Alternative File Explorer (Floating)
-		--
+        -- Alternative File Explorer (Floating)
+        --
 		"stevearc/oil.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = {
+            -- "nvim-tree/nvim-web-devicons",
+            {"echasnovski/mini.icons", opts = {}}
+        },
+        lazy = false,
 		config = function()
 			require("oil").setup {
 				use_default_keymaps = false,

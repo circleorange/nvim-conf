@@ -1,5 +1,14 @@
 # Neovim Configurations
 
+## Plugins
+- LSP management: "neovim/nvim-lspconfig", "mason-org/mason-lspconfig.nvim", "mason-org/mason.nvim", "WhoIsSethDaniel/mason-tool-installer.nvim",
+- Code & Motions: "nvim-treesitter/nvim-treesitter", "aaronik/treewalker.nvim", "folke/flash.nvim", 
+- Completions: "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip", "rafamadriz/friendly-snippets", "hrsh7th/nvim-cmp", "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "onsails/lspkind.nvim"
+- "folke/snacks.nvim": LSP functions, File Explorer, Picker, Lazygit, etc.
+- "echasnovski/mini.nvim": mini.pairs, mini.ai
+- Git: "NeogitOrg/neogit", 
+- Language specific: "folke/lazydev.nvim", "benlubas/molten-nvim"
+
 ## Build
 
 ### Ubuntu

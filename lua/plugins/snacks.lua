@@ -2,20 +2,23 @@ return {
 	-- Collection of small quality-of-life plugins.
 	--
 	"folke/snacks.nvim",
-	priority = 1000,
-	lazy = false,
-	opts = {
-		bigfile = {enabled = true}, -- Management of big files
-		indent	= {enabled = true},	-- Show indent guides and scopes based on treesitter/ indent
-		explorer= {enabled = true},	-- Show indent guides and scopes based on treesitter/ indent
-		input	= {enabled = true},	-- Center input dialogue (command palette)
-		toggle	= {enabled = true},	-- Toggle keymaps integrated with which-key icons/ colours
-		picker	= {enabled = true},	-- Used by other plugins, e.g. git branches
-		scope	= {enabled = true},	-- Scope detection, text objects, and jumping based on treesitter/ indent
-		scroll	= {enabled = true},	-- Smooth scrolling
-		notifier= {enabled = true},	-- Pretty notifications
-		words	= {enabled = true},	-- Auto-show LSP references and quickly navigate
-		quickfile= {enabled = true},-- Improve start-up performance
+	priority    = 1000,
+	lazy        = false,
+    dependencies = {
+        {"echasnovski/mini.icons", opts = {}}
+    },
+	opts        = {
+		bigfile     = {enabled = true}, -- Management of big files
+		indent	    = {enabled = true},	-- Show indent guides and scopes based on treesitter/ indent
+		explorer    = {enabled = true},	-- Show indent guides and scopes based on treesitter/ indent
+		input	    = {enabled = true},	-- Center input dialogue (command palette)
+		toggle	    = {enabled = true},	-- Toggle keymaps integrated with which-key icons/ colours
+		picker	    = {enabled = true},	-- Used by other plugins, e.g. git branches
+		scope	    = {enabled = true},	-- Scope detection, text objects, and jumping based on treesitter/ indent
+		scroll	    = {enabled = true},	-- Smooth scrolling
+		notifier    = {enabled = true},	-- Pretty notifications
+		words	    = {enabled = true},	-- Auto-show LSP references and quickly navigate
+		quickfile   = {enabled = true}, -- Improve start-up performance
 	},
 	keys = {
 		-- Commands
@@ -31,6 +34,7 @@ return {
 		{"gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Go to Type Definition"},
 		{"<Leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols"},
 		{"<Leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols"},
+		-- {"<Leader>rn", function() Snacks.picker.rename() end, desc = "Rename Symbol"},
 
 		-- File [E]xplorer
 		{"<Leader>et", function() Snacks.picker.explorer() end, desc = "Toggle File Explorer"},
@@ -76,7 +80,7 @@ return {
 			pattern = "VeryLazy",
 			callback = function()
 				_G.dd = function(...) Snacks.debug.inspect(...) end
-				_G.bt = function() Snacks.debug.backtrace() end
+	 		_G.bt = function() Snacks.debug.backtrace() end
 				vim.print = _G.dd -- Override print to use snacks for `:=` command
 
 				-- Create some toggle mappings
