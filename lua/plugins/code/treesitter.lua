@@ -28,8 +28,8 @@ return {
 			--"java",
 			"python",
 		},
-		--highlight	= {enable = true},
-		--indent		= {enable = true},
+		highlight	= {enable = true},
+		indent		= {enable = true},
 	},
 	config = function(_, opts)
 		local ts = require "nvim-treesitter"

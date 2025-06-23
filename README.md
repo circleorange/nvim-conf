@@ -16,7 +16,7 @@
 ### Ubuntu
 - Install neovim dependencies (Drop any unneeded):
 ```
-sudo apt install gcc npm python3 luarocks unzip build-essential fd-find
+sudo apt install gcc npm python3 luarocks unzip build-essential fd-find ripgrep
 ```
 - Install plugin dependencies from npm:
 ```
