@@ -11,6 +11,10 @@ return {
 	},
 	{
 		-- Completion Engine.
+        --
+        -- Commands:
+        --      :CmpStatus  - Show loaded completion sources.
+        --
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",				-- Load completions when entering Insert mode for efficiency
 		dependencies = {

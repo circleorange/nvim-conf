@@ -1,7 +1,7 @@
 return
     {
         {
-            -- Markdown browser live preview
+            -- Markdown LSP and browser live preview
             -- Commands:
             --      :RenderMarkdown toggle - Toggle state (Enable/ Disable) of the plugin.
             "MeanderingProgrammer/render-markdown.nvim",
@@ -23,7 +23,7 @@ return
                 local cmp = require "cmp"
                 cmp.setup {
                     sources = cmp.config.sources {
-                        { name = "render-markdown" }
+                        { name = "render-markdown" },
                     }
                 }
             end -- <<< config
@@ -50,12 +50,11 @@ return
             "epwalsh/obsidian.nvim",
             version     = "*",
             lazy        = true,
-            ft          = "markdown",
             -- Only load obsidian.nvim for markdown files in Obsidian vault directory.
-            -- event = {
-            --     "BufReadPre " .. "/mnt/c/Users/piotr/obsidian-vaults/masters/*.md",
-            --     "BufNewFile " .. "/mnt/c/Users/piotr/obsidian-vaults/masters/*.md",
-            -- },
+            event = {
+                "BufReadPre " .. "/mnt/c/Users/piotr/obsidian-vaults/masters/*.md",
+                "BufNewFile " .. "/mnt/c/Users/piotr/obsidian-vaults/masters/*.md",
+            },
             dependencies = {
                 "nvim-lua/plenary.nvim",            -- Required
                 "nvim-telescope/telescope.nvim",    -- Search and Quick-Switch functionality
@@ -88,10 +87,10 @@ return
                 },
             }, -- <<< opts
             config = function(_, opts)
-                -- vim.api.nvim_create_autocmd("FileType", {
-                --     pattern = { "markdown", "obsidian" },
-                --     callback = function() vim.opt.concellevel = 2 end,
-                -- })
+                vim.api.nvim_create_autocmd("FileType", {
+                    pattern = { "markdown", "obsidian" },
+                    callback = function() vim.opt.concellevel = 2 end,
+                })
                 require "nvim-treesitter".setup {
                     ensure_installed = { "markdown", "markdown_inline" },
                     highlight = { enable = true },
