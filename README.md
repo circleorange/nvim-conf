@@ -49,6 +49,12 @@ sudo apt install texlive-latex-extra biber latexmk texlive-bibtex-extra
 ```
 
 #### Jupyter Notebook support
+- Install terminal supporting Kitty Graphics Protocol (Kitty, Ghostty) and make it available in PATH:
+```
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh
+ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/kitty
+```
+
 - Install Remote Plugin API (Python client to Neovim) and Jupyter client:
 ```
 pip3 install pynvim jupyter_client
@@ -57,6 +63,18 @@ pip3 install pynvim jupyter_client
 Alternatively, if using Conda:
 ```
 conda install -c conda-forge jupyter_client
+```
+
+### Windows (or WSL)
+#### Jupyter Notebook support
+- Install scoop package manager:
+```
+irm get.scoop.sh | iex
+```
+- Install Kitty terminal emulator:
+```
+scoop bucket add extras
+scoop install kitty
 ```
 
 ## Issues
