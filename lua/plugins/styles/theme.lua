@@ -63,7 +63,7 @@ return {
 
 			-- Override highlights or add new highlights
 			on_highlights = function(highlights, colors)
-                highlights.LspReferenceRead = { bg = "#7e7e7e", underline = false }
+                highlights.LspReferenceRead = { bg = "#454545", underline = false }
                 highlights.LspReferenceWrite = { bg = "#7e7e7e", underline = false }
             end,
             -- LspReferenceText: Any symbol reference, (e.g. text inside quotes).
