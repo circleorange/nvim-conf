@@ -11,13 +11,17 @@ return {
 	},
 	{
 		-- Completion Engine.
+        --
+        -- Commands:
+        --      :CmpStatus  - Show loaded completion sources.
+        --
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",				-- Load completions when entering Insert mode for efficiency
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",			-- LSP source for nvim-cmp
 			"hrsh7th/cmp-buffer",			-- Buffer words source
 			"hrsh7th/cmp-path",				-- File path source
-			"L3MON4D3/LuaSnip",
+			"L3MON4D3/LuaSnip",             -- Alternatives (mini.snippets)
 			"onsails/lspkind.nvim",			-- Customisation of completion popup
 		},
 		config = function()
@@ -40,7 +44,7 @@ return {
 				sources = cmp.config.sources {
 					{name = "nvim_lsp"},	-- cmp-nvim-lsp
 					{name = "luasnip"},		-- cmp_luasnip
-					{name = "buffer"},
+					{name = "buffer"},      -- Buffed-based completions
 					{name = "path"},
 					--{name = "lazydev", group_index = 0}, -- Group index 0 to skip loading LuaLS completions
 				},

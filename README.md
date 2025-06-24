@@ -16,7 +16,7 @@
 ### Ubuntu
 - Install neovim dependencies (Drop any unneeded):
 ```
-sudo apt install gcc npm python3 luarocks unzip build-essential fd-find
+sudo apt install gcc npm python3 luarocks unzip build-essential fd-find ripgrep
 ```
 - Install plugin dependencies from npm:
 ```
@@ -81,6 +81,8 @@ scoop install kitty
 - nvim-java not compatible with Mason v2.0 (https://github.com/nvim-java/nvim-java/issues/384)
 
 ## Potential Plugins
+- `nvim-neorg/neorg`: Note taking.
+- `epwalsh/obsidian.nvim`: Note taking, Integration with Obsidian vaults.
 - "zeioth/compiler.nvim"
 - harpoon
 

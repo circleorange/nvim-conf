@@ -41,5 +41,4 @@ opt.autoread = true   -- Automatically re-read files if modified outside of Neov
 -- Performance
 opt.updatetime = 2000 -- Duration to trigger cursor hover event (default is 4000ms)
 -- opt.timeoutlen = 500 -- Time in milliseconds to wait for a mapped sequence to complete
--- opt.timeoutlen = 10 -- Time in milliseconds to wait for a key code sequence
 
