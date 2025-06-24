@@ -40,7 +40,7 @@ return {
 				sources = cmp.config.sources {
 					{name = "nvim_lsp"},	-- cmp-nvim-lsp
 					{name = "luasnip"},		-- cmp_luasnip
-					{name = "buffer"},
+					{name = "buffer"},      -- Buffed-based completions
 					{name = "path"},
 					--{name = "lazydev", group_index = 0}, -- Group index 0 to skip loading LuaLS completions
 				},

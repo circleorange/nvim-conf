@@ -5,11 +5,26 @@ return
             -- Commands:
             --      :RenderMarkdown toggle - Toggle state (Enable/ Disable) of the plugin.
             "MeanderingProgrammer/render-markdown.nvim",
-            dependencies = { {"echasnovski/mini.icons", opts = {}} },
-            config = function()
-                require "render-markdown".setup {
-                    -- Recommended configuration for completions.
-                    completions = { lsp = {enabled = true}}
+            dependencies = {
+                "nvim-treesitter/nvim-treesitter",
+                "echasnovski/mini.nvim",
+            },
+            opts = {
+                enabled = true, -- Markdown rendering by default
+                -- In-Process LSP
+                completions = { lsp = { enabled = true }},
+                latex = {
+                    enabled = false,
+                },
+            },
+            config = function(_, opts)
+                require "render-markdown".setup(opts)
+
+                local cmp = require "cmp"
+                cmp.setup {
+                    sources = cmp.config.sources {
+                        { name = "render-markdown" }
+                    }
                 }
             end -- <<< config
         },
@@ -36,6 +51,11 @@ return
             version     = "*",
             lazy        = true,
             ft          = "markdown",
+            -- Only load obsidian.nvim for markdown files in Obsidian vault directory.
+            -- event = {
+            --     "BufReadPre " .. "/mnt/c/Users/piotr/obsidian-vaults/masters/*.md",
+            --     "BufNewFile " .. "/mnt/c/Users/piotr/obsidian-vaults/masters/*.md",
+            -- },
             dependencies = {
                 "nvim-lua/plenary.nvim",            -- Required
                 "nvim-telescope/telescope.nvim",    -- Search and Quick-Switch functionality
@@ -44,7 +64,7 @@ return
             opts = {
                 mappings = {}, -- Empty table removes default key maps
                 workspaces = {
-                    { name = "masters", path = "/mnt/c/Users/piotr/obsidian-vaults" }
+                    { name = "masters", path = "/mnt/c/Users/piotr/obsidian-vaults/masters" }
                 },
                 completion = {
                     nvim_cmp = true, -- Use nvim_cmp for completions
@@ -61,13 +81,22 @@ return
                         tag_note = "<C-x>", -- Add tag(s) to current note
                         insert_tag = "<C-l>", -- Insert tag at current location
                     }
-                }
+                },
+                buffer = true,
+                ui = {
+                    enable = false, -- Syntax highlighting (Already covered by render-markdown)
+                },
             }, -- <<< opts
-            config = function()
-                vim.api.nvim_create_autocmd("FileType", {
-                    pattern = { "markdown", "obsidian" },
-                    callback = function() vim.opt_local.concellevel = 2 end,
-                })
-            end
+            config = function(_, opts)
+                -- vim.api.nvim_create_autocmd("FileType", {
+                --     pattern = { "markdown", "obsidian" },
+                --     callback = function() vim.opt.concellevel = 2 end,
+                -- })
+                require "nvim-treesitter".setup {
+                    ensure_installed = { "markdown", "markdown_inline" },
+                    highlight = { enable = true },
+                }
+                require "obsidian".setup(opts)
+            end -- << config
         }
     }

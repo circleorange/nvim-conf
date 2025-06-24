@@ -14,6 +14,9 @@ require "config.options"
 require "config.keymaps"
 
 -- Load plugins using lazy.nvim package manager.
+-- lazy.nvim automatically calls setup() if only the `opts` field is specified,
+-- Othwise, if `config` field exists, setup() needs to be called manually.
+-- If both fields specified, `opts` need to be manually passed into setup() inside `config`
 --
 -- Commands:
 --		- <Cmd>Lazy			- Show managed plugin information.
