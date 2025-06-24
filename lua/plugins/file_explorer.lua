@@ -37,11 +37,13 @@ return {
 			require("oil").setup {
 				use_default_keymaps = false,
 				keymaps = {
-					["<CR>"]  = "actions.select",
+					["<Cr>"]  = "actions.select",
 					["-"]     = "actions.parent",
-					["<C-h>"] = "actions.toggle_hidden",
+					["<C-h>"] = {"actions.toggle_hidden", mode = "n"},
+					["<C-p>"] = "actions.preview",
+					["<C-c>"] = {"actions.close", mode = "n"},
 					["<C-r>"] = "actions.refresh",
-					["?"]     = "actions.show_help",
+					["?"]     = {"actions.show_help", mode = "n"},
 				},
 			}
 		end,

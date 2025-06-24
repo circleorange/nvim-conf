@@ -12,7 +12,13 @@ return {
 		indent	    = {},	-- Show indent guides and scopes based on treesitter/ indent
 		explorer    = {enabled = true},	-- File explorer
 		health      = {enabled = true},
-		input	    = {},	-- Center input dialogue (command palette)
+        -- Center input dialogue (command palette)
+		input	    = {
+            backdrop = false, position = "float", border = "rounded", title_pos = "center", height = 1, width = 60, relative = "editor", noautocmd = true,
+            wo = { winhighlight = "NormalFloat:SnacksInputNormal,FloatBorder:SnacksInputBorder,FloatTitle:SnacksInputTitle", cursorline = false},
+            bo = { filetype = "snacks_input", buftype = "promt" },
+            b = { completion = false }, -- Buffer local variables
+        },
 		toggle	    = {enabled = true},	-- Toggle keymaps integrated with which-key icons/ colours
 		picker	    = {enabled = true},	-- Used by other plugins, e.g. git branches
 		scope	    = {enabled = true},	-- Scope detection, text objects, and jumping based on treesitter/ indent
@@ -25,8 +31,7 @@ return {
 	keys = {
 		-- Commands
 		{"<Leader>;", function() Snacks.picker.commands() end, desc = "Commands"},
-		-- {"<Leader>:", function() Snacks.picker.command_history() end, desc = "Command History"},
-		-- {"<Leader>:", function() Snacks.input { prompt = "Input: "} end, desc = "Command History"},
+		{"<Leader>:", function() Snacks.picker.command_history() end, desc = "Command History"},
 		{"<Leader>/", function() Snacks.picker.grep() end, desc = "Search string"},
 
 		-- LSP

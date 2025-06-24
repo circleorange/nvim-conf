@@ -9,3 +9,7 @@
 - Go to Mark: Backtick, e.g. `<Backtick>a` to go to mark "a"
 ```
 - Delete mark: `:delmarks a` or delete all marks with `:delmarks!`
+
+# mini.nvim
+## Surround:
+- `saiw)`: Surround Add Inner Word ")", i.e. word -> (word)

@@ -37,17 +37,15 @@ return {
             }
         }
 
-        -- Functionality for Surrounding text objects
+        -- Surround functionality for text objects
         --
         -- Functions:
-        --      sa  : Add surrounding
-        --      sd  : Remove surrounding
-        --      sr  : Replace surrounding
-        --      sh  : Highligh surrounding
-        --      sf  : Find surrounding to RHS (sF for LHS)
-        --
-        --  Usage:
-        --      `saiw).`: Surround inner word with (), `.` to repeat same operation
+        --      `sa` (Add) + motion/textobject + output id          : Add surrounding, e.g.         `saiw)` + word = (word)
+        --      `sd` (Delete) + output id                           : Remove surrounding, e.g.      `sd]` + [word] = word
+        --      `sr` (Replace) + input id (Find) + output id (Add)  : Replace surrounding, e.g.     `sr)]` + (word) = [word]
+        --      `sh` (Highlight) + input id                         : Highligh surrounding, e.g.    `shf` to highlight function
+        --      `sf` (Find) + input id                              : Find surrounding, e.g.        `sf}`
+        --      `.` (Dot operator) repeats last action.
         --
         require "mini.surround".setup()
 
@@ -69,7 +67,8 @@ return {
 		--
 		-- Usage:
 		--		> vi"	- Select textobject inside ""
-		--		> vi"i(	- Select textobject inside "", then Expand selection inside ()
+		--		> vi"i(	- Select textobject inside "", then expand selection to the next ()
+        --
 		require("mini.ai").setup {
 			mappings = {
 				-- Main textobject prefixes

@@ -87,9 +87,6 @@ export DISPLAY=host.docker.internal:0
 - "zeioth/compiler.nvim"
 - harpoon
 
-## nvim commands
-`:lua print(vim.inspect(require("jdtls")))`
-
 ## References
-
+- Potential contribution to implement support for snacks.image in molten-nvim (https://github.com/benlubas/molten-nvim/discussions/285).
 

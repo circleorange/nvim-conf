@@ -5,6 +5,7 @@ vim.g.mapleader = " "
 -- Misc
 set("n", "<Leader>rl", ":luafile %",                "Run current Lua file")
 set("t", "<Esc><Esc>", "<C-\\><C-n>",               "Exit Terminal Mode", nil, false)
+set("n", "<Leader>ih", ":highlight",                "Inspect [H]ighlights")
 set("n", "<Leader>um", ":RenderMarkdown toggle",    "Toggle Markdown Rendering")
 
 -- [L]azy

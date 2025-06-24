@@ -1,7 +1,7 @@
 return {
 	"vague2k/vague.nvim",
 	config = function()
-		require("vague").setup({
+		require("vague").setup {
 			transparent = true, -- Set Background
 
 			-- Globally toggle bold/italic, overrides `style`.
@@ -62,15 +62,22 @@ return {
 			},
 
 			-- Override highlights or add new highlights
-			on_highlights = function(highlights, colors) end,
+			on_highlights = function(highlights, colors)
+                highlights.LspReferenceRead = { bg = "#7e7e7e", underline = false }
+                highlights.LspReferenceWrite = { bg = "#7e7e7e", underline = false }
+            end,
+            -- LspReferenceText: Any symbol reference, (e.g. text inside quotes).
+            -- LspReferenceRead: Symbol is accessed, i.e. using the variable (require, vim).
+            -- LspReferenceWrite: Symbol is assigned, i.e. generally, variable on LHS.
 
 			-- Colours
+            -- :highlight LspReferenceWrite guibg=#7c7c7e gui=NONE
 			colors = {
-				bg = "#141415",
-				fg = "#cdcdcd",
+				bg = "#141415", -- ColorColumn,
+				fg = "#cdcdcd", -- CurSearch, Search, Affects colour of parenthesis, commas, dots
 				floatBorder = "#878787",
-				line = "#252530",
-				comment = "#606079",
+				line = "#252530", -- CursorLine, CursorColumn,
+				comment = "#5b5b5b", -- Comments, Matching Cursor Words
 				builtin = "#b4d4cf",
 				func = "#c48282",
 				string = "#e8b589",
@@ -80,15 +87,15 @@ return {
 				parameter = "#bb9dbd",
 				visual = "#333738",
 				error = "#d8647e",
-				warning = "#f3be7c",
+				warning = "#f3be7c", -- Diagnostic Warning icon, undercurl
 				hint = "#7e98e8",
 				operator = "#90a0b5",
 				keyword = "#6e94b2",
 				type = "#9bb4bc",
-				search = "#405065",
+				search = "#405065", -- Words matching search
 				plus = "#7fa563",
 				delta = "#f3be7c",
 			},
-		})
-	end
+		}
+	end -- <<< config
 }

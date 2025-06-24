@@ -10,6 +10,7 @@ return {
 			{"<Leader>e", group = "[E]xplorer"},
 			{"<Leader>f", group = "[F]ind (Files, Project)"},
 			{"<Leader>g", group = "[G]it"},
+			{"<Leader>i", group = "[I]nspect"},
 			{"<Leader>j", group = "Java"},
 			{"<Leader>l", group = "[L]SP"},
 			{"<Leader>L", group = "[L]azy"},
