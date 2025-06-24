@@ -21,7 +21,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",			-- LSP source for nvim-cmp
 			"hrsh7th/cmp-buffer",			-- Buffer words source
 			"hrsh7th/cmp-path",				-- File path source
-			"L3MON4D3/LuaSnip",
+			"L3MON4D3/LuaSnip",             -- Alternatives (mini.snippets)
 			"onsails/lspkind.nvim",			-- Customisation of completion popup
 		},
 		config = function()

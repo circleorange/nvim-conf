@@ -7,6 +7,7 @@ return
         },
         opts = {
             lsp = {
+                progress = { enabled = false }, -- Format LSP progress
                 -- Override markdown rendering to have `cmp` and others use `nvim-treesitter`
                 override = {
                     ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -22,8 +23,10 @@ return
                 lsp_doc_border = false, -- Border around hober docs and signature help
             },
             -- Disable noice.nvim messages, Using snack.nvim instead
-            messages = {
-                enabled = false,
-            },
+            messages = { enabled = false }, -- Message shown by LSP servers
+            notify = { enabled = false }, -- Notifications
+            hover = { enabled = false }, -- Hover docs
+            signature = { enabled = false},
+            documentation = { enabled = false },
         },
     }
