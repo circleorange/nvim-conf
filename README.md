@@ -48,7 +48,7 @@ nvim --version
 sudo apt install texlive-latex-extra biber latexmk texlive-bibtex-extra
 ```
 
-#### Jupyter Notebook support
+#### Jupyter Notebook support using molten.nvim
 - Install terminal supporting Kitty Graphics Protocol (Kitty, Ghostty) and make it available in PATH:
 ```
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh
@@ -64,18 +64,19 @@ Alternatively, if using Conda:
 ```
 conda install -c conda-forge jupyter_client
 ```
+- Follow remaining configuration steps.
 
 ### Windows (or WSL)
 #### Jupyter Notebook support
-- Install scoop package manager:
+Images.nvim relies on Kitty Graphics Protocol for rendering images in the terminal.
+Neither Kitty nor Ghostty are supported on Windows OS, hence need for X server (e.g. VcXsrv) to run the terminal from inside WSL.
+- Install Windows X Server (e.g. VcXsrv) from the web.
+- Launch `XLaunch` (Settings: Multiple Windows, Start No Client, Native OpenGL)
+- Set DISPLAY in WSL:
 ```
-irm get.scoop.sh | iex
+export DISPLAY=host.docker.internal:0
 ```
-- Install Kitty terminal emulator:
-```
-scoop bucket add extras
-scoop install kitty
-```
+- Run Kitty terminal inside WSL.
 
 ## Issues
 - nvim-java not compatible with Mason v2.0 (https://github.com/nvim-java/nvim-java/issues/384)
@@ -90,3 +91,5 @@ scoop install kitty
 `:lua print(vim.inspect(require("jdtls")))`
 
 ## References
+
+

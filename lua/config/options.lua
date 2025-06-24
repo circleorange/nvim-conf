@@ -17,6 +17,7 @@ opt.signcolumn = "yes"    -- Always show the sign column, otherwise it would shi
 opt.scrolloff = 8         -- Minimal number of screen lines to keep above and below the cursor
 opt.sidescrolloff = 8     -- Minimal number of screen columns to keep to the left and right of the cursor
 opt.showmode = false      -- Don't show mode since it's in the status line
+vim.opt.conceallevel = 2
 
 -- Tabs and Indentation
 opt.tabstop = 4        -- Number of spaces that a <Tab> in the file counts for

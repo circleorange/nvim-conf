@@ -74,5 +74,5 @@ return {
 			ensure_installed	= lang_tools,
 			auto_remove			= true
 		}
-	end, -- config
+	end, -- <<< config
 }

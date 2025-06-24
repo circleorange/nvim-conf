@@ -35,7 +35,7 @@ require("lazy").setup {
 	-- UI
     require "plugins.snacks",
     require "plugins.mini",
-    require "plugins.ui.cmd_line",
+    -- require "plugins.ui.cmd_line",
     require "plugins.ui.cursor",
     require "plugins.styles.theme",
 
@@ -55,3 +55,4 @@ require("lazy").setup {
     require "plugins.code.completions",
 }
 vim.cmd.colorscheme("vague")
+

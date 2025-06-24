@@ -35,10 +35,10 @@ return {
 
 				-- Snippet source (Can come in from multiple sources)
 				--
-				-- Other sources: 
+				-- Other sources:
 				--		> fuzzy_buffer	(buffer words)
 				--		> fuzzy_path	(filesystem paths)
-				--		> rg			(ripgrep results) 
+				--		> rg			(ripgrep results)
 				--		> cmp-ai		(any AI completion/ chat to cmp)
 				--
 				sources = cmp.config.sources {

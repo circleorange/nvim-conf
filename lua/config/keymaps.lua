@@ -1,22 +1,31 @@
-local map = require "utils.mapper".set_map
+local set = require "utils.mapper".set
 
 vim.g.mapleader = " "
 
--- [D]iagnostics
-map("n", "<Leader>do", vim.diagnostic.open_float, "Show Diagnostic popup")
+-- Misc
+set("n", "<Leader>rl", ":luafile %",                "Run current Lua file")
+set("t", "<Esc><Esc>", "<C-\\><C-n>",               "Exit Terminal Mode", nil, false)
+set("n", "<Leader>um", ":RenderMarkdown toggle",    "Toggle Markdown Rendering")
+
+-- [L]azy
+set("n", "<Leader>Ll", ":Lazy",                     "(Lazy) Open UI")
+set("n", "<Leader>Li", ":Lazy install",             "(Lazy) Install missing plugins")
+set("n", "<Leader>Lu", ":Lazy update",              "(Lazy) Update current plugins")
+set("n", "<Leader>Ls", ":Lazy sync",                "(Lazy) Install and Update all plugins")
 
 -- [G]it
-map("n", "<Leader>gd", ":DiffviewOpen<Cr>", "Open Git Diff View")
-vim.keymap.set("n", "<Leader>gD", ":DiffviewClose<Cr>", {desc = "Close Git Diff View"})
-vim.keymap.set("n", "<Leader>gh", ":DiffviewFileHistory", {desc = "Open Git history"})
-vim.keymap.set("n", "<Leader>gr", ":DiffviewRefresh", {desc = "Refresh Git entries"})
-vim.keymap.set("n", "<Leader>go", ":Neogit<Cr>", {desc = "Open Neogit UI"})
-vim.keymap.set("n", "<Leader>gs", ":Gitsigns toggle_signs<CR>", {desc = "Toggle Git signs"})
-vim.keymap.set("n", "<Leader>gp", ":Gitsigns preview_hunk<CR>", {desc = "Preview Hunk"})
-vim.keymap.set("n", "<Leader>gB", ":Gitsigns blame_line<CR>", {desc = "Show in-line Git blame"})
+set("n", "<Leader>gd", ":DiffviewOpen",             "Open Git Diff View")
+set("n", "<Leader>gD", ":DiffviewClose",            "Close Git Diff View")
+set("n", "<Leader>gh", ":DiffviewFileHistory",      "Open Git history")
+set("n", "<Leader>gr", ":DiffviewRefresh",          "Refresh Git entries")
+set("n", "<Leader>go", ":Neogit",                   "Open Neogit UI")
+set("n", "<Leader>gs", ":Gitsigns toggle_signs",    "Toggle Git signs")
+set("n", "<Leader>gp", ":Gitsigns preview_hunk",    "Preview Hunk")
+set("n", "<Leader>gB", ":Gitsigns blame_line",      "Show in-line Git blame")
 
-vim.keymap.set("n", "<Leader>eo", function() require'oil'.open_float(vim.fn.expand("%:p:h")) end, { desc = "File explorer (Oil)" })
-vim.keymap.set("n", "-", ":Oil ..<Cr>", { desc = "Oil quickly jump up" })
+-- File [E]xplorer
+set("n", "<Leader>eo", ":Oil --float",              "(Oil) [O]pen File Explorer")
+set("n", "-", ":Oil ..",                            "(Oil) Move up directory")
 
 -- Window Management and Navigation
 -- Split:
@@ -24,10 +33,10 @@ vim.keymap.set("n", "-", ":Oil ..<Cr>", { desc = "Oil quickly jump up" })
 --		`<C-w>c`: Close
 --		`<C-w>o`: Keep current split
 --		`<C-w> hjkl`: Navigate between windows
-vim.keymap.set("n", "<S-Up>", "<Cmd>resize +2<Cr>")
-vim.keymap.set("n", "<S-Down>", "<Cmd>resize -2<Cr>")
-vim.keymap.set("n", "<S-Left>", "<Cmd>vertical resize -2<Cr>")
-vim.keymap.set("n", "<S-Right>", "<Cmd>vertical resize +2<Cr>")
+set("n", "<S-Up>", ":resize +2",                    "(Window) Resize Up")
+set("n", "<S-Down>", ":resize -2",                  "(Window) Resize Down")
+set("n", "<S-Left>", ":vertical resize -2",         "(Window) Resize Left")
+set("n", "<S-Right>", ":vertical resize +2",        "(Window) Resize Right")
 
 -- Code Motions
 vim.keymap.set({"n", "v"}, "<C-k>", ":Treewalker Up<Cr>", { silent = true })
@@ -40,14 +49,17 @@ vim.keymap.set("n", "<C-S-h>", ":Treewalker SwapLeft<Cr>", { silent = true })
 vim.keymap.set("n", "<C-S-l>", ":Treewalker SwapRight<Cr>", { silent = true })
 
 -- Buffer nav & management
-vim.keymap.set("n", "<S-h>", "<Cmd>bprevious<Cr>", { desc = "Previous Buffer" })
-vim.keymap.set("n", "<S-l>", "<Cmd>bnext<Cr>", { desc = "Next Buffer" })
-vim.keymap.set("n", "<Leader>bb", "<Cmd>e #<Cr>", { desc = "Switch to Other Buffer" })
-vim.keymap.set("n", "<Leader>bd", ":bd<CR>", { desc = "Close buffer" })
+set("n", "<S-h>", ":bprevious",                     "(Buffer) Previous")
+set("n", "<S-l>", ":bnext",                         "(Buffer) Next")
+set("n", "<Leader>bb", "<Cmd>e #",                  "(Buffer) Switch")
+set("n", "<Leader>bd", ":bd",                       "(Buffer) Close")
 
 -- Code, Motions, Formatting
--- -- General
-map("n", "<leader>cr", vim.lsp.buf.rename, "LSP Rename" )
+-- -- [L]SP
+set("n", "<Leader>lc", ":CmpStatus",                "(LSP) Completions Status")
+set("n", "<Leader>ld", vim.diagnostic.open_float,   "(LSP) Show Diagnostic popup")
+set("n", "<leader>lr", vim.lsp.buf.rename,          "(LSP) Rename Symbol")
+set("n", "<leader>li", ":LspInfo",                  "(LSP) Info")
 -- -- Indentation
 vim.keymap.set("v", "<", "<gv", { desc = "Increase Indentation" })
 vim.keymap.set("v", ">", ">gv", { desc = "Decrease Indentation" })
@@ -59,10 +71,6 @@ vim.keymap.set("v", "<A-k>", "<Cmd>m '>-2<Cr>gv=gv", { desc = "Shift line down" 
 -- -- Trailing whitespace
 vim.keymap.set("n", "<Leader>ct", function() require("mini.trailspace").trim() end, { desc = "(Mini) Trim whitespace" })
 vim.keymap.set("n", "<Leader>cT", function() require("mini.trailspace").trim_last_lines() end, { desc = "(Mini) Trim lines" })
-map("n", "<Leader>um", ":RenderMarkdown toggle<Cr>", "Toggle Markdown Rendering")
-
-vim.keymap.set("n", "<Leader>rl", ":luafile %<Cr>", { desc = "Run current Lua file" })
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit Terminal Mode" })
 
 -- [T]abs
 vim.keymap.set("n", "<Leader>tn", ":tabnew<Cr>")

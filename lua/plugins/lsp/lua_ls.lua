@@ -23,7 +23,7 @@ return {
 		--	2. Configurations returned by /lsp/{name}.lua files in rtp, e.g. {rtp}/lsp/python.lua
 		--	3. Configurations defined anywhere else, e.g. init.lua but specifies `vim.lsp.config("pyright", ...`
 		vim.lsp.config("lua_ls", {
-			-- Defaults: 
+			-- Defaults:
 			--		> cmd			= {"lua-language-server"},
 			--		> filetypes		= {"lua"},
 			--		> root_markers	= {".luarc.json", "stylua.toml", ".git"},

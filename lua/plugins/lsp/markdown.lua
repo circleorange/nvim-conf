@@ -20,12 +20,12 @@ return
             config = function(_, opts)
                 require "render-markdown".setup(opts)
 
-                local cmp = require "cmp"
-                cmp.setup {
-                    sources = cmp.config.sources {
-                        { name = "render-markdown" },
-                    }
-                }
+                -- local cmp = require "cmp"
+                -- cmp.setup {
+                --     sources = cmp.config.sources {
+                --         { name = "render-markdown" },
+                --     }
+                -- }
             end -- <<< config
         },
         {
