@@ -7,7 +7,7 @@ local M = {}
 -- end
 function M.set(modes, key, fn, desc, opts, auto_submit)
     -- Combine default and new, if provided, opts and description
-    local opts_default = { noremap = true, silent = true } -- Defaults if none provided
+    local opts_default = { noremap = true, silent = false } -- Defaults if none provided
     local opts_combined
     if opts == nil then opts_combined = opts_default
     elseif type(opts) == "table" then opts_combined = opts

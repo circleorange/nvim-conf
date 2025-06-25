@@ -16,7 +16,7 @@
 ### Ubuntu
 - Install neovim dependencies (Drop any unneeded):
 ```
-sudo apt install gcc npm python3 luarocks unzip build-essential fd-find ripgrep
+sudo apt install gcc npm python3 python3-pip python3-venv luarocks unzip build-essential fd-find ripgrep
 ```
 - Install plugin dependencies from npm:
 ```
@@ -54,29 +54,40 @@ sudo apt install texlive-latex-extra biber latexmk texlive-bibtex-extra
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh
 ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/kitty
 ```
-
-- Install Remote Plugin API (Python client to Neovim) and Jupyter client:
+- Install image.nvim dependencies for rendering images in the terminal:
 ```
-pip3 install pynvim jupyter_client
+sudo apt install imagemagick
+```
+- Create virtual environment to host Neovim/Molten.nvim Python dependencies (using benlubas/venv_wrapper).
+```
+mkvenv neovim
+venv neovim
+```
+- Install Remote Plugin APIs (Python client and Jupyter client):
+```
+pip install pynvim jupyter_client plotly kaleifo pnglatex pyperclip cairosvg
 ```
 > Additional dependencies can include: `pnglatex` (for rendering TeX equations), `pyperclip` (To use molten_copy_output).
-Alternatively, if using Conda:
+>Alternatively, if using Conda:
 ```
 conda install -c conda-forge jupyter_client
 ```
-- Follow remaining configuration steps.
+- Point Neovim to the venv:
+```
+vim.g.python3_host_prog=vim.fn.expand("~/.virtualenvs/neovim/bin/python3")
+```
+- Install the kernel in a project virtual environment:
+```
+venv project_name
+pip install ipykernel
+python -m ipykernel install --user --name project name
+```
+- Launch Neovim with project venv active, and should be able to run `:MoltenInit {project_name}` to start kernel for project venv.
 
 ### Windows (or WSL)
 #### Jupyter Notebook support
 Images.nvim relies on Kitty Graphics Protocol for rendering images in the terminal.
-Neither Kitty nor Ghostty are supported on Windows OS, hence need for X server (e.g. VcXsrv) to run the terminal from inside WSL.
-- Install Windows X Server (e.g. VcXsrv) from the web.
-- Launch `XLaunch` (Settings: Multiple Windows, Start No Client, Native OpenGL)
-- Set DISPLAY in WSL:
-```
-export DISPLAY=host.docker.internal:0
-```
-- Run Kitty terminal inside WSL.
+Neither Kitty nor Ghostty are supported on Windows OS, however, with WSL2 (and WSLg) it is possible to launch Kitty terminal from inside WSL.
 
 ## Issues
 - nvim-java not compatible with Mason v2.0 (https://github.com/nvim-java/nvim-java/issues/384)
@@ -90,3 +101,4 @@ export DISPLAY=host.docker.internal:0
 ## References
 - Potential contribution to implement support for snacks.image in molten-nvim (https://github.com/benlubas/molten-nvim/discussions/285).
 
+![test image](ss.png)

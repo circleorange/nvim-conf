@@ -89,7 +89,6 @@ return
                     pattern = { "markdown", "markdown_inline" },
                     callback = function()
                         vim.treesitter.start() -- Syntax highlighting, provided by nvim-treesitter
-                        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" -- Indentation, by nvim-treesitter
                     end
                 })
             end -- <<< config

@@ -18,6 +18,15 @@ require "config.keymaps"
 -- Othwise, if `config` field exists, setup() needs to be called manually.
 -- If both fields specified, `opts` need to be manually passed into setup() inside `config`
 --
+-- Plugin Spec
+--      event : Specify an event (VeryLazy | InsertEnter) to load the plugin, e.g. event = "InsertEnter"
+--      lazy  : Lazy load plugin when called with `require`
+--      cmd   : Specify a command to load the plugin, e.g. cmd = "StartupTime"
+--      ft    : Specify file type to load the plugin, e.g. ft = "norg"
+--      init  : Called during startup, Specify neovim configurations for the plugin, e.g. vim.g.startuptime_tries=10
+--      opts  : Specify plugin configuration, Automatically calls `require().setup(opts)` if `config` property not defined,
+--      keys  : Lazy load plugin on keys, e.g. keys = {"J", ":TSJToggle<Cr>", desc = "Join Toggle"},
+--
 -- Commands:
 --		:Lazy			- Show managed plugin information.
 --		:Lazy install	- Install missing plugins, does not update existing ones.
