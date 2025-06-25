@@ -85,6 +85,7 @@ export DISPLAY=host.docker.internal:0
 - "zeioth/compiler.nvim"
 - harpoon (but first might be worth exploring built-in Marks)
 - `yetone/avante.nvim`: AI support similar to Cursor IDE.
+- `shortcuts/no-neck-pain.nvim`: Center focues buffer.
 
 ## References
 - Potential contribution to implement support for snacks.image in molten-nvim (https://github.com/benlubas/molten-nvim/discussions/285).
