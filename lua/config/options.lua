@@ -19,19 +19,25 @@ vim.opt.showmode = false      -- Don't show mode since it's in the status line
 vim.opt.conceallevel = 2      -- Value 0-3, Controls text concealment level, i.e. hide URL to show hypertext etc.
 
 -- Text and Indentation
-vim.opt.wrap = true         -- Do not wrap lines
-vim.opt.tabstop = 4         -- Number of spaces that a <Tab> in the file counts for
-vim.opt.softtabstop = 4     -- Number of spaces that a <Tab> counts for when inserting a <Tab>
-vim.opt.shiftwidth = 4      -- Number of spaces to use for each step of (auto)indent
-vim.opt.expandtab = true    -- Use spaces instead of tabs
-vim.opt.autoindent = true   -- Copy indent from current line when starting a new line
-vim.opt.smartindent = true  -- Make indenting smart
+vim.opt.wrap        = true         -- Do not wrap lines
+vim.opt.tabstop     = 4            -- Number of spaces that a <Tab> in the file counts for
+vim.opt.softtabstop = 4            -- Number of spaces that a <Tab> counts for when inserting a <Tab>
+vim.opt.shiftwidth  = 4            -- Number of spaces to use for each step of (auto)indent
+vim.opt.expandtab   = true         -- Use spaces instead of tabs
+vim.opt.autoindent  = true         -- Copy indent from current line when starting a new line
+vim.opt.smartindent = true         -- Make indenting smart
+
+-- Code Folding
+vim.opt.foldmethod = "expr" -- "indent" (Indent-based folding) | "syntax" (Requires syntax file) | "expr" (Treesitter, etc.)
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.indentexpr = "nvim_treesitter#indentexpr()" -- Indentation, by nvim-treesitter
+-- vim.opt.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" -- Indentation, by nvim-treesitter
 
 -- Search
-vim.opt.hlsearch = true   -- Highlight all matches on search
-vim.opt.incsearch = true  -- Show search results incrementally
-vim.opt.ignorecase = true -- Ignore case in search patterns
-vim.opt.smartcase = true  -- Override 'ignorecase' if the search pattern contains uppercase letters
+vim.opt.hlsearch   = true   -- Highlight all matches on search
+vim.opt.incsearch  = true   -- Show search results incrementally
+vim.opt.ignorecase = true   -- Ignore case in search patterns
+vim.opt.smartcase  = true   -- Override 'ignorecase' if the search pattern contains uppercase letters
 
 -- Windows
 vim.opt.splitright = true   -- When splitting vertically, new window goes to the right

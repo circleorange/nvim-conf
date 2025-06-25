@@ -1,6 +1,30 @@
 return
     {
         {
+            -- Integration with Zotero for Markdown for managing citations.
+            -- 
+            "jalvesaq/zotcite",
+            dependencies = {
+                "nvim-treesitter/nvim-treesitter",
+                "nvim-telescope/telescope.nvim",
+                "hrsh7th/nvim-cmp",
+                "jalvesaq/cmp-zotcite", -- Completion source for nvim-cmp, using zotcite as backend
+            },
+            config = function()
+                require "zotcite".setup()
+                require "cmp_zotcite".setup {
+                    filetype = {
+                        "pandoc", "markdown", "rmd", "quarto"
+                    },
+                }
+                require "cmp".setup {
+                    sources = {
+                        { name = "cmp_zotcite" }
+                    }
+                }
+            end -- <<< config
+        },
+        {
             -- Support from image pasting (either clipboard or drag-and-drop) into markup files.
             --
             "HakonHarnes/img-clip.nvim", event = "VeryLazy",
@@ -54,7 +78,21 @@ return
                 latex = {
                     enabled = false,
                 },
-            },
+            }, -- <<< opts
+            config = function(_, opts)
+                require "render-markdown".setup(opts)
+
+                local ts = require "nvim-treesitter"
+                ts.install { "markdown", "markdown_inline" }
+                -- Treesitter feautures need to be manually enabled
+                vim.api.nvim_create_autocmd("FileType", {
+                    pattern = { "markdown", "markdown_inline" },
+                    callback = function()
+                        vim.treesitter.start() -- Syntax highlighting, provided by nvim-treesitter
+                        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" -- Indentation, by nvim-treesitter
+                    end
+                })
+            end -- <<< config
         },
         {
             -- Plugin for writing and navigating Obsidian vaults.
@@ -118,21 +156,5 @@ return
                     enable = false, -- Syntax highlighting (Already covered by render-markdown, results in conflicts)
                 },
             }, -- <<< opts
-            config = function(_, opts)
-                require "obsidian".setup(opts)
-
-                local ts = require "nvim-treesitter"
-                ts.install { "markdown", "markdown_inline" }
-                -- Treesitter feautures need to be manually enabled
-                vim.api.nvim_create_autocmd("FileType", {
-                    pattern = { "markdown", "markdown_inline" },
-                    callback = function()
-                        vim.treesitter.start() -- Syntax highlighting, provided by nvim-treesitter
-                        vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Folds, by Neovim
-                        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" -- Indentation, by nvim-treesitter
-                    end
-                })
-
-            end -- << config
         }
     }

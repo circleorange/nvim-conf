@@ -5,6 +5,7 @@ return {
 	--		- <Cmd>TSInstall {lang}	- Install specific LSP, can be `all`.
 	--		- <Cmd>TSUpdate			- Update all installed languages, or specify with {language}.
 	--		- <Cmd>TSLog			- Show logs from previous installations, updates, and uninstalls.
+    --		:TSContextToggle
 	--
 	"nvim-treesitter/nvim-treesitter",
 	branch	= "main",
