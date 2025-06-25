@@ -84,6 +84,10 @@ return {
 		{"<Leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer"},
 		{"]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
 		{"[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
+
+        {"<leader>fv", function() Snacks.picker.files {
+            cwd = vim.fn.stdpath("config")
+        } end, desc = "(Picker) Fa[v]ourites"},
 	},
 	init = function()
 		vim.api.nvim_create_autocmd("User", {

@@ -1,5 +1,5 @@
 -- General
--- opt.guifont = "Agave Nerd Font"
+-- vim.opt.guifont = "Agave Nerd Font"
 vim.opt.mouse = "a"               -- Enable mouse support in all modes
 vim.opt.clipboard = "unnamedplus" -- Use system clipboard
 vim.opt.swapfile = false          -- Disable swap files
@@ -29,7 +29,7 @@ vim.opt.smartindent = true         -- Make indenting smart
 
 -- Code Folding
 vim.opt.foldmethod = "expr" -- "indent" (Indent-based folding) | "syntax" (Requires syntax file) | "expr" (Treesitter, etc.)
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldexpr   = "nvim_treesitter#foldexpr()"
 vim.opt.indentexpr = "nvim_treesitter#indentexpr()" -- Indentation, by nvim-treesitter
 -- vim.opt.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" -- Indentation, by nvim-treesitter
 
