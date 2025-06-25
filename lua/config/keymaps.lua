@@ -2,6 +2,24 @@ local set = require "utils.mapper".set
 
 vim.g.mapleader = " "
 
+-- Markup 
+-- -- [I]mageClip
+set("n", "<Leader>oi", ":PasteImage", "Paste [i]mage from clipoard")
+-- -- [O]bsidian
+set("n", "<Leader>oc", ":ObsidianToggleCheckbox", "Toggle [c]heckbox")
+set("n", "<Leader>oC", ":ObsidianTOC", "Open Table of [C]ontents")
+set("n", "<Leader>of", ":ObsidianFollowLink vsplit", "[F]ollow reference")
+set("n", "<Leader>oF", ":ObsidianBacklinks", "Find references to current buffer")
+set("n", "<Leader>ol", ":ObsidianLink ", "[L]ink visual selection", nil, false)
+set("n", "<Leader>oL", ":ObsidianLinks", "Find [L]inks in current buffer")
+-- set("n", "<Leader>oL", ":ObsidianLinkNew ", "Create and [L]ink note", nil, false)
+set("n", "<Leader>on", ":ObsidianNew ", "[N]pew Note", nil, false)
+set("n", "<Leader>oo", ":ObsidianOpen ", "[O]pen Note", nil, false)
+set("n", "<Leader>oq", ":ObsidianQuickSwitch", "[Q]uick Switch")
+set("n", "<Leader>os", ":ObsidianSearch ", "[S]earch or Create notes", nil, false)
+set("n", "<Leader>ot", ":ObsidianTags ", "Find [t]ags", nil, false)
+set("n", "<Leader>ow", ":ObsidianWorkspace ", "Open [W]orkspace", nil, false)
+
 -- Misc
 set("n", "<Leader>rl", ":luafile %",                "Run current Lua file")
 set("t", "<Esc><Esc>", "<C-\\><C-n>",               "Exit Terminal Mode", nil, false)

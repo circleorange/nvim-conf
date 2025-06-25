@@ -17,7 +17,6 @@ return {
 
 			-- Data
 			"yaml", "json", "toml", "xml",
-			"markdown", "markdown_inline",
             "regex",
 
 			-- Frontend languages
@@ -37,7 +36,7 @@ return {
 		ts.install(opts.ensure_installed)
 		-- Treesitter feautures need to be manually enabled
 		vim.api.nvim_create_autocmd("FileType", {
-			pattern = {"lua", "python", "toml", "yaml", "markdown"},
+			pattern = {"lua", "python", "toml", "yaml"},
 			callback = function()
 				vim.treesitter.start() -- Syntax highlighting, provided by nvim-treesitter
 				vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Folds, by Neovim

@@ -22,7 +22,8 @@ return {
 			"hrsh7th/cmp-buffer",			-- Buffer words source
 			"hrsh7th/cmp-path",				-- File path source
 			"L3MON4D3/LuaSnip",             -- Alternatives (mini.snippets)
-			"onsails/lspkind.nvim",			-- Customisation of completion popup
+			"saadparwaiz1/cmp_luasnip",		-- LuaSnip snippet source
+			"onsails/lspkind.nvim",			-- Customisation of completion popup (highlight groups)
 		},
 		config = function()
 			local cmp		= require "cmp"

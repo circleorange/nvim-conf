@@ -14,6 +14,7 @@ return {
 			{"<Leader>j", group = "Java"},
 			{"<Leader>l", group = "[L]SP"},
 			{"<Leader>L", group = "[L]azy"},
+			{"<Leader>o", group = "[O]bsidian"},
 			{"<Leader>p", group = "Python"},
 			{"<Leader>s", group = "Search"},
 			{"<Leader>t", group = "Terminal"},

@@ -19,10 +19,10 @@ require "config.keymaps"
 -- If both fields specified, `opts` need to be manually passed into setup() inside `config`
 --
 -- Commands:
---		- <Cmd>Lazy			- Show managed plugin information.
---		- <Cmd>Lazy install	- Install missing plugins, does not update existing ones.
---		- <Cmd>Lazy update	- Update plugins that are already installed.
---		- <Cmd>Lazy sync	- Both install missing plugins, update all, and clean any unused plugins.
+--		:Lazy			- Show managed plugin information.
+--		:Lazy install	- Install missing plugins, does not update existing ones.
+--		:Lazy update	- Update plugins that are already installed.
+--		:Lazy sync	    - Both install missing plugins, update all, and clean any unused plugins.
 --
 require("lazy").setup {
 
@@ -31,18 +31,18 @@ require("lazy").setup {
     require "plugins.motions",
     require "plugins.whichkey",
     require "plugins.file_explorer",
+    require "plugins.ai",
 
 	-- UI
     require "plugins.snacks",
     require "plugins.mini",
-    -- require "plugins.ui.cmd_line",
     require "plugins.ui.cursor",
     require "plugins.styles.theme",
 
     -- Language Server Protocols (LSP)
     require "plugins.lsp.lua_ls",
 	require "plugins.lsp.python",
-	require "plugins.lsp.markdown",
+	require "lua.plugins.lsp.markup",
     -- require("lsp.java"), -- Disabled due to issues with Mason 2.0
 	-- require("lsp.bash"),
 	-- require("lsp.c"),

@@ -82,10 +82,9 @@ export DISPLAY=host.docker.internal:0
 - nvim-java not compatible with Mason v2.0 (https://github.com/nvim-java/nvim-java/issues/384)
 
 ## Potential Plugins
-- `nvim-neorg/neorg`: Note taking.
-- `epwalsh/obsidian.nvim`: Note taking, Integration with Obsidian vaults.
 - "zeioth/compiler.nvim"
-- harpoon
+- harpoon (but first might be worth exploring built-in Marks)
+- `yetone/avante.nvim`: AI support similar to Cursor IDE.
 
 ## References
 - Potential contribution to implement support for snacks.image in molten-nvim (https://github.com/benlubas/molten-nvim/discussions/285).

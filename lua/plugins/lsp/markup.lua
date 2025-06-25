@@ -1,32 +1,60 @@
 return
     {
         {
+            -- Support from image pasting (either clipboard or drag-and-drop) into markup files.
+            --
+            "HakonHarnes/img-clip.nvim", event = "VeryLazy",
+            opts = {
+                default = {
+                    embed_image_as_base64 = false,
+                    prompt_for_file_name = false,
+                    drag_and_drop = { insert_mode = true },
+                    use_absolute_path = true, -- Required for Windows OS
+                },
+            },
+            keys = {
+                { "<Leader>mv", ":PasteImage", desc = "[P]aste image from clipboard" },
+                -- Snacks.nvim Picker has built-in support for image preview
+                { "<Leader>mp", function()
+                    Snacks.picker.files {
+                        ft = { "jpg", "jpeg", "png", "webp" },
+                        confirm = function(self, item, _)
+                            self:close()
+                            require "img-clip".paste_image({}, "./" .. item.file)
+                        end,
+                    } end, desc = "(Snacks) [P]review media files in Picker"
+                },
+                { "<Leader>me", function()
+                    local oil = require "oil"
+                    local filename = oil.get_cursor_entry().name
+                    local dir = oil.get_current_dir()
+                    oil.close()
+                    local img_clip = require "img-clip"
+                    img_clip.paste_image({}, dir .. filename)
+                end, desc = "(Oil) Paste image file from Explorer" },
+            },
+        },
+        {
             -- Markdown LSP and browser live preview
-            -- Commands:
+            --
+            -- Commands
             --      :RenderMarkdown toggle - Toggle state (Enable/ Disable) of the plugin.
+            --
             "MeanderingProgrammer/render-markdown.nvim",
             dependencies = {
                 "nvim-treesitter/nvim-treesitter",
                 "echasnovski/mini.nvim",
             },
             opts = {
-                enabled = true, -- Markdown rendering by default
+                enabled = true, -- Markdown rendering enabled by default
                 -- In-Process LSP
-                completions = { lsp = { enabled = true }},
+                completions = {
+                    lsp = { enabled = true }
+                },
                 latex = {
                     enabled = false,
                 },
             },
-            config = function(_, opts)
-                require "render-markdown".setup(opts)
-
-                -- local cmp = require "cmp"
-                -- cmp.setup {
-                --     sources = cmp.config.sources {
-                --         { name = "render-markdown" },
-                --     }
-                -- }
-            end -- <<< config
         },
         {
             -- Plugin for writing and navigating Obsidian vaults.
@@ -46,29 +74,33 @@ return
             --      :ObsidianWorkspace {name}   - Switch to another workspace.
             --      :ObsidianToggleCheckbox     - Toggle checkbox.
             --      :ObsidianTOC                - Open Picker with table of contents.
+            --      :ObsidianPasteImg           - Handle attachments (Images)
+            --
+            -- References:
+            --  > Integrate obsidian.nvim with image.nvim: https://github.com/3rd/image.nvim/issues/190#issuecomment-2378156235
             --
             "epwalsh/obsidian.nvim",
             version     = "*",
             lazy        = true,
             -- Only load obsidian.nvim for markdown files in Obsidian vault directory.
             event = {
-                "BufReadPre " .. "/mnt/c/Users/piotr/obsidian-vaults/masters/*.md",
-                "BufNewFile " .. "/mnt/c/Users/piotr/obsidian-vaults/masters/*.md",
+                "BufReadPre " .. "/home/pbiel/repos/obsidian-vaults/masters/*.md",
+                "BufNewFile " .. "/home/pbiel/repos/obsidian-vaults/masters/*.md",
             },
             dependencies = {
                 "nvim-lua/plenary.nvim",            -- Required
                 "nvim-telescope/telescope.nvim",    -- Search and Quick-Switch functionality
                 "nvim-treesitter/nvim-treesitter",
+                "hrsh7th/nvim-cmp",
             },
             opts = {
                 mappings = {}, -- Empty table removes default key maps
                 workspaces = {
-                    { name = "masters", path = "/mnt/c/Users/piotr/obsidian-vaults/masters" }
+                    { name = "Masters", path = "/home/pbiel/repos/obsidian-vaults/masters" }
                 },
-                completion = {
-                    nvim_cmp = true, -- Use nvim_cmp for completions
-                    min_chars = 2, -- Trigger completion character threshold
-                },
+                -- Completions of Wiki links (`[[`), markdown links (`[`), and tags (`#`)
+                -- > `min_chars` specified character threshold to trigger completions
+                completion = { nvim_cmp = true, min_chars = 2 },
                 picker = {
                     -- Picker alternatives: telescope.nvim, fzf-lua, mini.pick
                     name = "telescope.nvim",
@@ -83,19 +115,24 @@ return
                 },
                 buffer = true,
                 ui = {
-                    enable = false, -- Syntax highlighting (Already covered by render-markdown)
+                    enable = false, -- Syntax highlighting (Already covered by render-markdown, results in conflicts)
                 },
             }, -- <<< opts
             config = function(_, opts)
-                vim.api.nvim_create_autocmd("FileType", {
-                    pattern = { "markdown", "obsidian" },
-                    callback = function() vim.opt.concellevel = 2 end,
-                })
-                require "nvim-treesitter".setup {
-                    ensure_installed = { "markdown", "markdown_inline" },
-                    highlight = { enable = true },
-                }
                 require "obsidian".setup(opts)
+
+                local ts = require "nvim-treesitter"
+                ts.install { "markdown", "markdown_inline" }
+                -- Treesitter feautures need to be manually enabled
+                vim.api.nvim_create_autocmd("FileType", {
+                    pattern = { "markdown", "markdown_inline" },
+                    callback = function()
+                        vim.treesitter.start() -- Syntax highlighting, provided by nvim-treesitter
+                        vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Folds, by Neovim
+                        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" -- Indentation, by nvim-treesitter
+                    end
+                })
+
             end -- << config
         }
     }
